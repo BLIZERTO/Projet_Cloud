@@ -22,7 +22,9 @@ db.connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
 routes.get("/", (req, res) => res.send("Server run"));
 routes.post("/login", login);
 routes.post("/register", register);
+// creer un projet
 routes.post("/createvolume", createVolume.createUserVolume);
+// recuperer tous les projets
 routes.post("/getallvolumesbyid", createVolume.getAllUserVolumeByID);
 
 
