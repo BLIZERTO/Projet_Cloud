@@ -1,6 +1,5 @@
 const User = require("../model/index")
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
     let userExist = await User.findOne({ email: req.body.email });
@@ -8,7 +7,7 @@ const register = async (req, res) => {
     if (!userExist) {
         const user = new User(req.body)
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
+        user.password = await bcrypt.hash(req.body.password, salt);
         user.save();
 
       res.json({message: "register create" });
