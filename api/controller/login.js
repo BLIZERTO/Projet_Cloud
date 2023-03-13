@@ -14,10 +14,10 @@ const login = async (req, res) => {
         "secret",
         { expiresIn: "1h" }
       );
-  
+
       res.json({ token: token });
     } else {
-      res.send("email ou mot de passe incorect");
+      res.send("email ou mot de passe incorrect");
     }
 };
 
