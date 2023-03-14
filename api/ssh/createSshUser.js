@@ -5,18 +5,18 @@ async function createUser(username, userpass) {
         // Establish SSH connection
         const ssh = await connectSSH();
         // Create user
-        const createUserResult = await ssh.execCommand(`sudo useradd -m ${username}`);
+        const createUser = await ssh.execCommand(`sudo useradd -m ${username}`);
         console.log('User created');
 
         // Set user password
-        const setUserPasswordResult = await ssh.execCommand(`sudo passwd ${username}`, {
+        const setUserPassword = await ssh.execCommand(`sudo passwd ${username}`, {
             pty: true,
             stdin: `${userpass}\n${userpass}\n`
         });
         console.log(`Password set for user ${username}`);
 
         // Secure user folder
-        const secureUserFolderResult = await ssh.execCommand(`sudo chmod 511 /home/${username}`);
+        const secureUserFolder = await ssh.execCommand(`sudo chmod 511 /home/${username}`);
         console.log('Folder secure');
 
         // Disconnect SSH connection
@@ -27,4 +27,4 @@ async function createUser(username, userpass) {
     }
 }
 
-createUser('testnode6', 'testnode');
+createUser('testnode', 'testnode');
