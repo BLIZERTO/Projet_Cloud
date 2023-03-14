@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 // @ts-ignore 
 import * as Yup from 'yup';
 // @ts-ignore
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 // @ts-ignore
 import axios from 'axios';
 import '../index.css';
@@ -16,7 +16,7 @@ interface FormValues {
     avatar: string;
 }
 
-const MyForm = () => {
+const RegisterForm = () => {
     const navigate = useNavigate();
 
     const initialValues: FormValues = {
@@ -24,56 +24,38 @@ const MyForm = () => {
         email: '',
         avatar: '',
     };
-    
+
     const validationSchema = Yup.object({
         password: Yup.string().required('Password is required'),
         email: Yup.string().email('Invalid email address').required('Required'),
     });
 
-    // const onSubmit = async (values: FormValues) => {
-    //     try {
-    //         const response = await axios('http://localhost:4000/api/login', {
-    //             method: 'POST',
-    //             headers: { 'Content-Type': 'application/json' },
-    //             body: JSON.stringify(values),
-    //         });
-            
-    //         if (!response.ok) {
-    //             throw new Error('Failed to submit form');
-    //         }
-    //         else {
-    //             navigate('/BO');
-    //             console.log('Form submitted successfully');
-    //         }
-            
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
 
-    const handleSubmit = async (values: FormValues, { setSubmitting, setStatus }) => {
+    const handleRegister = async (values: FormValues, { setSubmitting, setStatus }) => {
         try {
-          const response = await axios.post('http://localhost:4000/api/login', values);
-          if (response.data.success) {
-            setStatus({ success: true });
-            navigate('/BO');
-          } else {
+            const response = await axios.post('http://localhost:4000/api/register', values);
             console.log(response)
-            setStatus({ error: 'Incorrect username or password' });
-          }
+            if (response.data.success) {
+                setStatus({ success: true });
+            }
+            else if(response.data === 'user already exist') {
+                setStatus({ error: 'User already exist' });
+            } else {
+                setStatus({ error: 'Incorrect username or password' });
+            }
         } catch (error) {
-          setStatus({ error: 'An error occurred while logging in' });
+            setStatus({ error: 'An error occurred while logging in' });
         }
         setSubmitting(false);
-      };
+    };
 
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}
+            onSubmit={handleRegister}
         >
-             {({ isSubmitting, status }) => (
+            {({ isSubmitting, status }) => (
                 <Form className="main_form">
                     <div className="input_container">
                         <label className="label" htmlFor="email">Email</label>
@@ -86,9 +68,7 @@ const MyForm = () => {
                         <ErrorMessage component="div" className="error_message" name="password" />
                     </div>
                     <div className="button_container">
-                        <button className="main_button" type="submit" disabled={isSubmitting}>
-                            Connexion
-                        </button>
+                        <Link className="main_button center" to="/">Connexion</Link>
                         <button className="main_button" type="submit" disabled={isSubmitting}>
                             Inscription
                         </button>
@@ -100,4 +80,4 @@ const MyForm = () => {
     );
 };
 
-export default MyForm;
+export default RegisterForm;
