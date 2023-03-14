@@ -5,17 +5,21 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-      <nav className='sidebar'>
-        <img src="logo.svg"></img>
-        <ul>
-          <li className='menu'>
-            <Link to="/">Home</Link>
-          </li>
-          <li className='menu'>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className='sidebar'>
+        <div className='menu'>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">Compte utilisateur</Link>
+            </li>
+            <li>
+              <Link to="/about">Support</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
   );
 };
 
