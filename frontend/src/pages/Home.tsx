@@ -5,8 +5,11 @@ import MyForm from "../components/Form";
 
 const Home = () => {
     return (
-        <div>
-            <MyForm></MyForm>
+        <div className="home_container">
+            <div className="form_container">
+                <img src="./assets/logo.svg" alt="Logo" />
+                <MyForm></MyForm>
+            </div>
         </div>
     );
 };

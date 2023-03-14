@@ -21,6 +21,7 @@ module.exports = {
 				black: "#000000",
 				transparent: "transparent",
 				grey: "#494949",
+				greylight: "#EEEFF0"
 			},
 			background: {},
 			fontSize: {
@@ -32,7 +33,8 @@ module.exports = {
 			},
 			borderRadius: {
 				none: "0",
-				rounded: "20px",
+				rounded: "10px",
+				roundedbig: "20px",
 			},
 			extend: {
 				spacing: {

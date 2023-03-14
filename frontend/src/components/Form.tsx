@@ -49,19 +49,25 @@ const MyForm = () => {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="form">
-
-                    <label htmlFor="email">Email Address</label>
-                    <Field id="email" name="email"/>
-                    <ErrorMessage name="email" />
-
-                    <label htmlFor="password">Password</label>
-                    <Field id="password" name="password" />
-                    <ErrorMessage name="password" />
-
-                    <button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </button>
+                <Form className="main_form">
+                    <div className="input_container">
+                        <label className="label" htmlFor="email">Email</label>
+                        <Field className="input" placeholder="Email" id="email" name="email" />
+                        <ErrorMessage name="email" />
+                    </div>
+                    <div className="input_container">
+                        <label className="label" htmlFor="password">Password</label>
+                        <Field className="input" placeholder="Password" id="password" name="password" />
+                        <ErrorMessage name="password" />
+                    </div>
+                    <div className="button_container">
+                        <button className="main_button" type="submit" disabled={isSubmitting}>
+                            Connexion
+                        </button>
+                        <button className="main_button" type="submit" disabled={isSubmitting}>
+                            Inscription
+                        </button>
+                    </div>
                 </Form>
             )}
         </Formik>
