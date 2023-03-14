@@ -1,6 +1,5 @@
 const {User} = require("../model/index")
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
     let userExist = await User.findOne({ email: req.body.email });

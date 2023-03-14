@@ -1,5 +1,4 @@
 const db = require("mongoose");
-const model = db.Schema;
 
 const userSchema = new db.Schema({
   email: {
