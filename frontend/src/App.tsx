@@ -1,22 +1,22 @@
 // @ts-ignore 
-import React from "react";
+import React from 'react';
 // @ts-ignore 
-import logo from "./logo.svg";
+import { Switch, Route, Routes } from 'react-router-dom';
 // @ts-ignore 
-import MyForm from "./components/Form";
-import "./App.css";
+import Home from './pages/Home';
+// @ts-ignore 
+import BO from './pages/BO';
+// import About from './pages/About';
 
-
-function App() {
+const App = () => {
 	return (
-		<div className="App">
-
-			<MyForm></MyForm>
-
-
-
+		<div>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/bo" element={<BO />} />
+			</Routes>
 		</div>
 	);
-}
+};
 
 export default App;
