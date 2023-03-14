@@ -2,22 +2,24 @@
 const {NodeSSH} = require('node-ssh')
 let ssh = new NodeSSH();
 
-function connect(){
-    ssh.connect({
+
+function connectSSH() {
+    return ssh.connect({
             host: '40.124.184.7',
             username: 'groupe8',
             password: 'hetic2023groupe8RD!',
         })
-        .then(function() {
+        .then(() => {
             console.log('Connected to server');
-            // Command
-            ssh.exec('ls', [''], {cwd: '/var/www/html'}).then(function (result) {
-                console.log('STDOUT: ' + result);});
-        }).catch((error) => {
-        console.error('ERROR: ', error);
-    });
+            return ssh; // renvoie l'objet ssh
+        })
+        .catch(err => {
+            console.log(`Error connecting to server: ${err}`);
+            throw err; // lance une erreur
+        });
 }
-connect()
+module.exports = connectSSH;
+
 
 
 
