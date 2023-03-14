@@ -17,3 +17,12 @@ body {
     right: 0;
     margin: auto;
 }
+.sidebar{
+    background-color: theme('colors.uranianblue');
+    color: theme('colors.white');
+    display: inline-flex;
+    width: 300px;
+    height: 1024px;
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.medium');
+}

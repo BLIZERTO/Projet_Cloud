@@ -5,16 +5,17 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </nav>
+      <nav className='sidebar'>
+        <img src="logo.svg"></img>
+        <ul>
+          <li className='menu'>
+            <Link to="/">Home</Link>
+          </li>
+          <li className='menu'>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
   );
 };
 
