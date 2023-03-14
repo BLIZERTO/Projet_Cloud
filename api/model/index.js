@@ -10,9 +10,16 @@ const userSchema = new db.Schema({
     type: String,
     require: true,
   },
-  volume: {
+  username: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
+  userVolume: {
     type: db.Schema.Types.ObjectId,
-    ref: "UserVolume"
+    ref: "UserVolume",
+    select: true
   },
 });
 
