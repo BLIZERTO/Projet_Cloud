@@ -4,6 +4,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 // @ts-ignore 
 import * as Yup from 'yup';
+import '../index.css';
 
 interface FormValues {
     password: string;
@@ -48,10 +49,10 @@ const MyForm = () => {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form>
+                <Form className="form">
 
                     <label htmlFor="email">Email Address</label>
-                    <Field id="email" name="email" />
+                    <Field id="email" name="email"/>
                     <ErrorMessage name="email" />
 
                     <label htmlFor="password">Password</label>

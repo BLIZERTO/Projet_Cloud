@@ -7,6 +7,7 @@ import Home from './pages/Home';
 // @ts-ignore 
 import BO from './pages/BO';
 // import About from './pages/About';
+import './index.css';
 
 const App = () => {
 	return (
