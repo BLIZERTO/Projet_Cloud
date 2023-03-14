@@ -24,6 +24,8 @@ routes.post("/login", login);
 routes.post("/register", register);
 routes.post("/createvolume", createVolume.createUserVolume);
 routes.post("/getallvolumesbyid", createVolume.getAllUserVolumeByID);
+routes.get("/allvolume", createVolume.getAllVolume);
+
 
 
 
