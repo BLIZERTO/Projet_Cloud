@@ -21,13 +21,14 @@ module.exports = {
 				black: "#000000",
 				transparent: "transparent",
 				grey: "#494949",
-				greylight: "#EEEFF0"
+				greylight: "#EEEFF0",
+				red: "#E90606"
 			},
 			background: {},
 			fontSize: {
-				sm: "0.75rem",
-				base: "1rem",
-				lg: "1.25rem",
+				sm: "14px",
+				base: "16px",
+				lg: "20px",
 				xl: "2.125rem",
 				"2xl": "3rem",
 			},

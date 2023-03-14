@@ -48,10 +48,12 @@ body {
 	border-radius: theme('borderRadius.roundedbig');
 	padding: 10px 24px;
     line-height: 1;
+	font-size: theme('fontSize.base');
 }
 
 .label {
 	color: theme('colors.yinblue');
+	font-size: theme('fontSize.lg');
 }
 
 .main_button{
@@ -61,10 +63,17 @@ body {
 	padding: 10px 30px;
 	line-height: 1;
 	min-width: 150px;
+	font-size: theme('fontSize.base');
 }
 
 .button_container{
 	display: flex;
     justify-content: space-between;
     margin-top: 20px;
+}
+
+.error_message{
+	color: theme('colors.red');
+	font-weight: 600;
+	font-size: theme('fontSize.base');
 }

@@ -1,7 +1,7 @@
 // @ts-ignore 
 import React from 'react';
 // @ts-ignore 
-import { Switch, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // @ts-ignore 
 import Home from './pages/Home';
 // @ts-ignore 
