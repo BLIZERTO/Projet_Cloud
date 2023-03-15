@@ -1,4 +1,4 @@
-const User = require("../model/index")
+const {User} = require("../model/index")
 const bcrypt = require("bcrypt");
 const createSshUser = require ('../ssh/createSshUser');
 const createPassword = require('../lib/createPassword')

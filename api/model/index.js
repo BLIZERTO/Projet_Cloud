@@ -1,34 +1,45 @@
 const db = require("mongoose");
-const model = db.Schema;
 
-const userSchema = new model({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    avatar: {
-        type : String,
-        required:false,
-    },
-    password: {
-        type: String,
-        require: true
-    }
+const userSchema = new db.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    require: true,
+  },
+  username: {
+    type: String
+  },
+  avatar: {
+    type: String
+  },
+  userVolume: {
+    type: db.Schema.Types.ObjectId,
+    ref: "UserVolume",
+    select: true
+  },
 });
 
-const userVolumeSchema = new model({
-    name: {
-        type: String,
-        required: true,
-    },
-    creatorID : {
-        type: db.Schema.Types.ObjectId,
-        ref: "userSchema"
-    },
+const User = db.model("User", userSchema);
 
+const userVolumeSchema = new db.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  creatorID: {
+    type: db.Schema.Types.ObjectId,
+    ref: "User",
+    select: false
+  },
 });
 
+const UserVolume = db.model("UserVolume", userVolumeSchema);
 
-module.exports = User = db.model('User', userSchema);
-// module.exports = UserVolume = db.model('User Volume', userVolumeSchema);
+module.exports = {
+  User,
+  UserVolume,
+};
