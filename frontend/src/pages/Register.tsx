@@ -1,17 +1,17 @@
 // @ts-ignore 
 import React from 'react';
 // @ts-ignore 
-import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 
-const Home = () => {
+const Register = () => {
     return (
         <div className="home_container">
             <div className="form_container">
                 <img src="./assets/logo.svg" alt="Logo" />
-                <LoginForm></LoginForm>
+                <RegisterForm></RegisterForm>
             </div>
         </div>
     );
 };
 
-export default Home;
+export default Register;
