@@ -135,3 +135,8 @@ body {
     padding-left: 29rem;
     padding-right: 117px;
 }
+.footer {
+	display: flex;
+	justify-content: center;
+	margin-top: 14rem;
+}
