@@ -20,7 +20,11 @@ const register = async (req, res) => {
                 }
                 return email.slice(0, atIndex);
         }
-            await createSshUser(sshUsername(),createPassword())
+        const sshPassword = createPassword();
+        
+        console.log(sshUsername(), sshPassword)
+
+            await createSshUser(sshUsername(),sshPassword)
 
       res.json({message: "register create"});
     } else {

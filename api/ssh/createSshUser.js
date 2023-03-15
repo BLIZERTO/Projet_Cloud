@@ -1,6 +1,7 @@
 const connectSSH = require ('./connect')
 
 async function createUser(username, userpass) {
+    console.log(username, userpass)
     try {
         // Establish SSH connection
         const ssh = await connectSSH();
