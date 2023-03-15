@@ -36,7 +36,7 @@ const LoginForm = () => {
 		
 		try {
 			const response = await axios.post('http://localhost:4000/api/login', values);
-			console.log(response)
+			// console.log(response)
 			if (response.data.token && response.data.token.length > 0) {
 				setStatus({ success: true });
 				//setcookie

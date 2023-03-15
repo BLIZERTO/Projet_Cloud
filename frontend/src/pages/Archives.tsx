@@ -4,7 +4,8 @@ import React from 'react';
 import Footer from "../components/Footer";
 // @ts-ignore 
 import CollapsiblePersonalInfo from '../components/UserSSH';
-
+// @ts-ignore
+import VolumeList from '../components/Volumes';
 
 
 
@@ -13,6 +14,7 @@ const Archives = () => {
   
     return (
         <div>
+            <VolumeList></VolumeList>
             <CollapsiblePersonalInfo  />
             {/* {personalInfo ? (
                 <CollapsiblePersonalInfo  />
