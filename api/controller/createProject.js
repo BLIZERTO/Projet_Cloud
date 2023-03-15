@@ -11,7 +11,7 @@ const createProject = async (req, res) => {
         project.db_username = project.name.replace(/ /g,'') + '_admin';
         project.db_password = createPassword();
         project.save();
-        
+
         await createDatabase(project.db_name, project.db_username, project.db_password);
 
         res.json({message: "Project created" });
