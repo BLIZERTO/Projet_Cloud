@@ -8,8 +8,9 @@ import Home from './pages/Home';
 import BO from './pages/BO';
 // @ts-ignore 
 import Register from './pages/Register';
-// import About from './pages/About';
 import './index.css';
+// @ts-ignore 
+import Archives from './pages/Archives';
 
 const App = () => {
 	return (
@@ -18,6 +19,7 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/bo" element={<BO />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/archives" element={<Archives />} />
 			</Routes>
 		</div>
 	);
