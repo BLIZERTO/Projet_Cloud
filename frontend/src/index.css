@@ -68,3 +68,30 @@ body {
     justify-content: space-between;
     margin-top: 20px;
 }
+.sidebar{
+    background-color: theme('colors.uranianblue');
+    color: theme('colors.white');
+    display: inline-flex;
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.medium');
+    position: fixed;
+    top: 0;
+    bottom: 0;
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: center;
+    margin-top: 11rem;
+    color: theme('colors.yinblue');
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.2xl');
+}
