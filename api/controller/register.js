@@ -12,7 +12,6 @@ const register = async (req, res) => {
         const user = new User(req.body)
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(req.body.password, salt);
-        user.save();
         const sshUsername = (email = req.body.email) => {
                 const atIndex = email.indexOf('@');
                 if (atIndex === -1) {
@@ -21,10 +20,11 @@ const register = async (req, res) => {
                 return email.slice(0, atIndex);
         }
         const sshPassword = createPassword();
+        user.ssh_password = sshPassword;
+        user.username = sshUsername();
+        user.save();
 
-        console.log(sshUsername(), sshPassword)
-
-            await createSshUser(sshUsername(),sshPassword)
+        await createSshUser(user.username,sshPassword)
 
       res.json({message: "register create"});
     } else {
