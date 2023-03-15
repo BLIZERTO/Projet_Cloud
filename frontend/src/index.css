@@ -54,9 +54,9 @@ body {
     padding-top: 25px;
 }
 .presentation {
-    display: block;
-    width: 880px;
-    height: 152px;
     font-family: theme('fontFamily.mts');
     font-size: theme('fontSize.lg');
+    padding-top: 10px;
+    padding-left: 29rem;
+    padding-right: 117px;
 }
