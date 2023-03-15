@@ -1,26 +1,28 @@
+// @ts-ignore 
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// @ts-ignore 
+import { Route, Routes } from 'react-router-dom';
+// @ts-ignore 
+import Home from './pages/Home';
+// @ts-ignore 
+import BO from './pages/BO';
+// @ts-ignore 
+import Register from './pages/Register';
+import './index.css';
+// @ts-ignore 
+import Archives from './pages/Archives';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<div>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/bo" element={<BO />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/archives" element={<Archives />} />
+			</Routes>
+		</div>
+	);
+};
 
 export default App;
