@@ -1,6 +1,6 @@
 const connectSSH = require ('./connect')
 
-async function createProject(projectname, username) {
+async function createSshProject(projectname, username) {
     try {
         // Establish SSH connection
         const ssh = await connectSSH();
@@ -16,6 +16,10 @@ async function createProject(projectname, username) {
         const giveUserRights = await ssh.execCommand(`sudo chmod 700 /home/${username}/${projectname}`);
         console.log(`>>> Access for ${projectname} to Write & Read given to ${username}`);
 
+        //Create project config
+        const createProjectConfig = await ssh.execCommand(`sudo sh nginx-config.sh ${projectname} ${username}`);
+        console.log('>>> Project Config created');
+
         // Disconnect SSH connection
         await ssh.dispose();
         console.log('Disconnected from server');
@@ -23,5 +27,5 @@ async function createProject(projectname, username) {
         console.log(`Error: ${err}`);
     }
 }
-module.exports = createProject;
+module.exports = createSshProject;
 

@@ -1,10 +1,18 @@
 const {UserVolume} = require("../model/index")
 const createDatabase = require("../ssh/createSshDB");
 const createPassword = require("../lib/createPassword");
+const createSshProject = require("../ssh/createSshProject")
+const {User} = require("../model/index");
 
 const createProject = async (req, res) => {
     let projectExist = await UserVolume.findOne({ name: req.body.name });
-    // check user
+
+    //get Username with ID provided
+    const users = await User.find({_id: req.body.creatorID});
+    const user = users[0];
+    const userName = user.username;
+
+    // check Project
     if (!projectExist) {
         const project = new UserVolume(req.body)
         project.db_name = project.name.replace(/ /g,'') + '_database';
@@ -12,11 +20,12 @@ const createProject = async (req, res) => {
         project.db_password = createPassword();
         project.save();
 
+        await createSshProject(project.name,userName)
         await createDatabase(project.db_name, project.db_username, project.db_password);
 
-        res.json({message: "Project created" });
+        res.json({message: `Project  [${project.name}]  created` });
     } else {
-        res.send("user already exist");
+        res.send("Project name already taken");
     }
 };
 
