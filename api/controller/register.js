@@ -7,9 +7,9 @@ const register = async (req, res) => {
     if (!userExist) {
         const user = new User(req.body)
         const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(user.password, salt);
-        user.save()
-  
+        user.password = await bcrypt.hash(req.body.password, salt);
+        user.save();
+
       res.json({message: "register create" });
     } else {
       res.send("user already exist");
