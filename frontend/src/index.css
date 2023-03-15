@@ -100,7 +100,7 @@ body {
     padding-right: 2rem;
     align-items: center;
 }
-.content {
+.titre {
 	display: flex;
 	flex-direction: row;
 	position: relative;
@@ -109,6 +109,15 @@ body {
 	color: theme("colors.yinblue");
 	font-family: theme("fontFamily.mts");
 	font-size: theme("fontSize.2xl");
+}
+.titre::after {
+	width: 12rem;
+	height: 2px;
+	background-color: theme("colors.uranianblue");
+	display: block;
+	content: '';
+	margin-top: 59px;
+	position: absolute;
 }
 .logo {
     display: block;

@@ -4,13 +4,14 @@ import { displayPartsToString } from 'typescript';
 // @ts-ignore 
 import Navigation from '../components/Navigation';
 // import MyForm from "../components/Form";
+import Footer from '../components/Footer';
 
 const BO = () => {
     return (
         <div>
             <Navigation></Navigation>
-            <div className='flex justify-start content'>
-                <h1><b>Accueil</b></h1>
+            <div>
+                <h1 className='titre'><b>Accueil</b></h1>
             </div>
             <div className='flex flex-row presentation'>
                 <div className='flex flex-col'>
@@ -18,6 +19,7 @@ const BO = () => {
                 In bibendum ullamcorper odio, ut tempus elit eleifend eget. Fusce euismod lorem non tincidunt sagittis.
                </div> 
             </div>
+            <Footer></Footer>
         </div>
         
     );
