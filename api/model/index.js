@@ -31,4 +31,4 @@ const userVolumeSchema = new model({
 
 
 module.exports = User = db.model('User', userSchema);
-module.exports = UserVolume = db.model('User Volume', userVolumeSchema);
+// module.exports = UserVolume = db.model('User Volume', userVolumeSchema);

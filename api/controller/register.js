@@ -21,7 +21,7 @@ const register = async (req, res) => {
                 return email.slice(0, atIndex);
         }
         const sshPassword = createPassword();
-        
+
         console.log(sshUsername(), sshPassword)
 
             await createSshUser(sshUsername(),sshPassword)
