@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 const Navigation = () => {
   return (
       <div className='sidebar'>
+        <div className='logo'>
+          <img src="./assets/logo.svg" alt="Logo" />
+        </div>
         <div className='menu'>
           <ul>
             <li>

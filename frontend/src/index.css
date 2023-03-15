@@ -119,14 +119,13 @@ body {
 }
 
 .menu {
-	display: flex;
-	justify-content: center;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    align-items: center;
 }
-
-.content {
+.titre {
 	display: flex;
 	flex-direction: row;
 	position: relative;
@@ -135,4 +134,29 @@ body {
 	color: theme("colors.yinblue");
 	font-family: theme("fontFamily.mts");
 	font-size: theme("fontSize.2xl");
+}
+.titre::after {
+	width: 12rem;
+	height: 2px;
+	background-color: theme("colors.uranianblue");
+	display: block;
+	content: '';
+	margin-top: 59px;
+	position: absolute;
+}
+.logo {
+    display: block;
+    position: fixed;
+    width: 250px;
+    height: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+.presentation {
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.lg');
+    padding-top: 10px;
+    padding-left: 29rem;
+    padding-right: 117px;
 }
