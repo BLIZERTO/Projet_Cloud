@@ -29,8 +29,9 @@ const CollapsiblePersonalInfo: React.FC = () => {
 	};
 
 	useEffect(() => {
-		axios.get("http://localhost:4000/api/getallvolumesbyid").then((response) => {
+		axios.get("http://localhost:3000/api/getallvolumesbyid").then((response) => {
 			setPersonalInfo(response.data);
+			console.log(response)
 			console.log(response.data)
 		});
 	}, []);
