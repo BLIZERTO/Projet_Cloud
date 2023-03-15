@@ -23,7 +23,5 @@ async function createProject(projectname, username) {
         console.log(`Error: ${err}`);
     }
 }
-createProject('testproject','testnode');
-
 module.exports = createProject;
 

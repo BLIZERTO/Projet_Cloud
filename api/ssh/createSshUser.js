@@ -6,8 +6,6 @@ async function createUser(username, userpass) {
         const ssh = await connectSSH();
         // Create user
         const createUser = await ssh.execCommand(`sudo useradd -m ${username}`);
-        console.log('User created');
-
         // Set user password
         const setUserPassword = await ssh.execCommand(`sudo passwd ${username}`, {
             pty: true,
@@ -27,4 +25,4 @@ async function createUser(username, userpass) {
     }
 }
 
-createUser('testnode', 'testnode');
+module.exports = createUser;
