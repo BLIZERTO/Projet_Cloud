@@ -2,6 +2,8 @@
 import React from 'react';
 // @ts-ignore 
 import LoginForm from "../components/LoginForm";
+// @ts-ignore 
+import Footer from "../components/Footer";
 
 const Home = () => {
     return (
@@ -10,6 +12,8 @@ const Home = () => {
                 <img src="./assets/logo.svg" alt="Logo" />
                 <LoginForm></LoginForm>
             </div>
+
+            <Footer></Footer>
         </div>
     );
 };

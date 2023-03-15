@@ -6,6 +6,15 @@ body {
 	font-family: mts;
 }
 
+/* Optimiser le code */
+/* Ajouter les class sous forme de class tailwind directement dans les composants React  */
+/* Prendre en compte les class tailwind dans les composants React  */
+/* @layer components {
+	.btn-primary {
+		@apply pl-[230px] py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+	}
+} */
+
 .main_form {
 	display: flex;
 	flex-direction: column;
@@ -82,6 +91,22 @@ body {
 	font-size: theme("fontSize.base");
 }
 
+
+.footer{
+	position: absolute;
+	bottom: 40px;
+	background-color: theme("colors.uranianblue");
+	padding: 10px 25px;
+    border-radius: 50px;
+}
+
+.footer span{
+	color: theme("colors.yinblue");
+	font-size: theme("fontSize.sm");
+}
+
+
+
 .sidebar {
 	background-color: theme("colors.uranianblue");
 	color: theme("colors.white");
@@ -100,6 +125,7 @@ body {
 	padding-right: 1rem;
 	align-items: center;
 }
+
 .content {
 	display: flex;
 	flex-direction: row;
