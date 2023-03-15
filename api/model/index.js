@@ -11,7 +11,12 @@ const userSchema = new db.Schema({
     require: true,
   },
   username: {
-    type: String
+    type: String,
+    require: true,
+  },
+  ssh_password: {
+    type:String,
+    require: true,
   },
   avatar: {
     type: String
@@ -29,6 +34,18 @@ const userVolumeSchema = new db.Schema({
   name: {
     type: String,
     required: true,
+  },
+  db_name :{
+    type: String,
+    required : true,
+  },
+  db_username :{
+    type: String,
+    required : true,
+  },
+  db_password :{
+    type: String,
+    required : true,
   },
   creatorID: {
     type: db.Schema.Types.ObjectId,
