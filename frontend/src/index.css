@@ -30,8 +30,8 @@ body {
 .menu {
     display: flex;
     justify-content: center;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     align-items: center;
 }
 .content {
@@ -43,4 +43,20 @@ body {
     color: theme('colors.yinblue');
     font-family: theme('fontFamily.mts');
     font-size: theme('fontSize.2xl');
+}
+.logo {
+    display: block;
+    position: fixed;
+    width: 250px;
+    height: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+.presentation {
+    display: block;
+    width: 880px;
+    height: 152px;
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.lg');
 }
