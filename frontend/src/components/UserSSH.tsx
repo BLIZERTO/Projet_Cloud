@@ -1,35 +1,48 @@
-// @ts-ignore 
-import React, { useState } from "react";
+// @ts-ignore
+import React, { useState, useEffect } from "react";
+// @ts-ignore
+import axios from "axios";
 
-interface UserSSH {
-  username: string;
-  sshpassword: string;
+interface PersonalInfoProps {
+	username: string;
+	sshpassword: string;
 }
 
-const UserSSH: React.FC<UserSSH> = ({ username, sshpassword }) => {
-  return (
-    <div>
-      <p>Username: {username}</p>
-      <p>Password: {sshpassword}</p>
-    </div>
-  );
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ username, sshpassword }) => {
+	return (
+		<div>
+			<p>Username: {username}</p>
+			<p>Password: {sshpassword}</p>
+		</div>
+	);
 };
 
-const CollapsibleUserSSH: React.FC<UserSSH> = (props : any) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+const CollapsiblePersonalInfo: React.FC = () => {
+	const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+	const [personalInfo, setPersonalInfo] = useState<PersonalInfoProps>({
+		username: "",
+		sshpassword: "",
+	});
 
-  const handleButtonClick = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+	const handleButtonClick = () => {
+		setIsCollapsed(!isCollapsed);
+	};
 
-  return (
-    <div>
-      <button onClick={handleButtonClick}>
-        {isCollapsed ? "show" : "hide"} Personal Info
-      </button>
-      {!isCollapsed && <UserSSH {...props} />}
-    </div>
-  );
+	useEffect(() => {
+		axios.get("http://localhost:4000/api/getallvolumesbyid").then((response) => {
+			setPersonalInfo(response.data);
+			console.log(response.data)
+		});
+	}, []);
+
+	return (
+		<div>
+			<button onClick={handleButtonClick}>
+				{isCollapsed ? "Show" : "Hide"} Personal Info
+			</button>
+			{!isCollapsed && <PersonalInfo {...personalInfo} />}
+		</div>
+	);
 };
 
-export default CollapsibleUserSSH;
+export default CollapsiblePersonalInfo;

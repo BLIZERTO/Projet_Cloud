@@ -1,16 +1,26 @@
 // @ts-ignore 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // @ts-ignore 
 import Footer from "../components/Footer";
 // @ts-ignore 
-import CollapsibleUserSSH from '../components/UserSSH';
+import CollapsiblePersonalInfo from '../components/UserSSH';
+//@ts-ignore
+import axios from 'axios';
+
 
 
 const Archives = () => {
+    
+  
     return (
         <div>
-            {/* <CollapsibleUserSSH></CollapsibleUserSSH> */}
-            <Footer></Footer>
+            <CollapsiblePersonalInfo  />
+            {/* {personalInfo ? (
+                <CollapsiblePersonalInfo  />
+            ) : (
+                <p>Loading personal information...</p>
+            )} */}
+            <Footer />
         </div>
     );
 };
