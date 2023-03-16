@@ -1,22 +1,12 @@
+#!/bin/bash
 
-# Get variables from arguments
-dbName=$1
 
-# Switch to MongoDB
-mongosh
-echo ">>>>>>> Switch to MongoDB"
+# argument du nom dela BDD
+database_name=$1
 
-use "$dbName"
-
-echo ">>> $dbName selected"
-
-"db.stats()"
-echo ">>> Stats from $dbName given"
-
-# Switch back to server
-exit
-echo ">>>>>>> Switch back to server"
-
+#  <<EOF permet de passer plusieurs lige à mongosh
+mongosh <<EOF
+use $database_name;
+db.stats();
+exit;
 EOF
-# Disconnect SSH connection
-echo "Disconnected from server"
