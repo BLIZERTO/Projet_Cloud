@@ -209,3 +209,21 @@ a + a {
 	padding-top: 30px;
 }
 	
+.volumes_list{
+	display: grid;
+    grid-template-columns: repeat(4, 1fr);
+	gap: 40px;
+}
+
+.volume{
+	background-color: theme("colors.uranianblue");
+	width: 180px;
+	height: 220px;
+	display: flex;
+    justify-content: center;
+}
+
+.volume-title{
+	color: theme("colors.white");
+	margin-top: 50px;
+}

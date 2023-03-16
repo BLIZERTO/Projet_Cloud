@@ -1,50 +1,81 @@
 // @ts-ignore
+import React, { useEffect, useState } from "react";
+// @ts-ignore
 import axios from "axios";
 // @ts-ignore
-import React, { useEffect, useState } from "react"
+import jwt_decode from "jwt-decode";
+// @ts-ignore
+import AddVolumeButton from "./AddVolumeButton";
+// @ts-ignore
+import { useNavigate, Link } from 'react-router-dom';
+import '../index.css';
 
 interface Volume {
-    _id: string;
-    name: string;
-    creatorID: {
-        _id: string;
-        email: string;
-        __v: number;
-    };
+	_id: string;
+	name: string;
+	creatorID: string;
 }
 
-const VolumeList = () => {
-    const [volumes, setVolumes] = useState<Volume[]>([]);
+const Volumes: React.FC = () => {
+	const handleAddVolume = (newVolume: Volume) => {
+		setVolumes([...volumes, newVolume]);
+	};
 
-    const fetchData = async () => {
-        try {
-          const response = await axios.post<{ volume: Volume[] }>(
-            "http://localhost:4000/api/getallvolumesbyid"
-          );
-          const volumeData = response.data.volume;
-          setVolumes(volumeData);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-    
-      useEffect(() => {
-        fetchData();
-      }, []);
-  
-    return (
-      <div>
-        <h2>List of Volumes:</h2>
-        <ul>
-          {volumes.map((volume) => (
-            <li key={volume._id}>
-              <h3>{volume.name}</h3>
-              <p>Creator: {volume.creatorID.email}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
-  
-  export default VolumeList;
+	const [volumes, setVolumes] = useState<Volume[]>([]);
+
+	function getToken(token: string): any {
+		const tokenString = localStorage.getItem(token) as string;
+		const userToken = jwt_decode(tokenString);
+
+		return userToken;
+	}
+
+	// const handleRemoveVolume = async (volumeId: string) => {
+	// 	try {
+	// 		await axios.delete(`http://localhost:4000/api/volume/${volumeId}`);
+	// 		setVolumes(volumes.filter((volume) => volume._id !== volumeId));
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
+
+	useEffect(() => {
+		const fetchPersonalInfo = async () => {
+			try {
+				const decodedToken = getToken("token");
+				const response = await axios.post<{ volume: Volume[] }>(
+					"http://localhost:4000/api/getallvolumesbyid",
+					{
+						id: decodedToken.id,
+					},
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				);
+				setVolumes(response.data.volume);
+				console.log(response.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchPersonalInfo();
+	}, []);
+
+	return (
+		<div className="volumes_list">
+			{volumes.length > 0 ? (
+				volumes.map((volume) =><Link><div className="volume" key={volume._id}><span className="volume-title">{volume.name}</span></div></Link>)
+			) : (
+				<div className="volume">No volumes found.</div>
+			)}
+			<div className="volume">
+				<AddVolumeButton creatorID={getToken("token").id} onAddVolume={handleAddVolume} />
+			</div>
+			{/* <button onClick={() => handleRemoveVolume(volume._id)}>Remove</button> */}
+		</div>
+	);
+};
+
+export default Volumes;
