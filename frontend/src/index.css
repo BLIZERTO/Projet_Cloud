@@ -156,7 +156,22 @@ body {
 .presentation {
     font-family: theme('fontFamily.mts');
     font-size: theme('fontSize.lg');
-    padding-top: 10px;
-    padding-left: 29rem;
+    padding-top: 35px;
+    padding-left: 22rem;
     padding-right: 117px;
+}
+a + a {
+	margin-left: 181px;
+}
+.buttons {
+	display: flex;
+	justify-content: center;
+	font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.lg');
+	margin-top: 80px;
+}
+.avatar {
+	position: absolute;
+	top: 10px;
+	right: 92px;
 }
