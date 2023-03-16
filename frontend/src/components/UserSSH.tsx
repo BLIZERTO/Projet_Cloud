@@ -21,17 +21,17 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ username, sshpassword }) =>
 
 function getToken(token: string): any {
 	const tokenString = localStorage.getItem(token) as string;
-	// const userToken = jwt_decode(tokenString);
-	
-	return tokenString;
+	const userToken = jwt_decode(tokenString);
+
+	return userToken;
 }
 
 
 
 const CollapsiblePersonalInfo: React.FC = () => {
 
-	// const decodedToken = getToken("token");
-	// // console.log(decodedToken.id);
+	const decodedToken = getToken("token");
+	console.log(decodedToken.id);
 	const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 	const [personalInfo, setPersonalInfo] = useState<PersonalInfoProps>({
 		username: "",
@@ -44,16 +44,19 @@ const CollapsiblePersonalInfo: React.FC = () => {
 		await fetchPersonalInfo();
 	};
 
-	
+
 	const fetchPersonalInfo = async () => {
-		const tokenString = localStorage.getItem("token") as string;
-		console.log(getToken);
+		// const tokenString = localStorage.getItem("token") as string;
+		console.log(decodedToken.id, "decodedToken.id");
 		try {
 			const response = await axios.post("http://localhost:4000/api/getallvolumesbyid", {
 				headers: {
 					"Content-Type": "application/json",
-					Authorization: `JWT ${tokenString}`,
+					// Authorization: `JWT ${tokenString}`,
 				},
+
+				id: decodedToken.id,
+
 			});
 			setPersonalInfo(response.data);
 			console.log(response)
