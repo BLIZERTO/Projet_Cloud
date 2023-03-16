@@ -1,13 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-family: mts;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Optimiser le code */
+/* Ajouter les class sous forme de class tailwind directement dans les composants React  */
+/* Prendre en compte les class tailwind dans les composants React  */
+/* @layer components {
+	.btn-primary {
+		@apply pl-[230px] py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+	}
+} */
+
+.main_form {
+	display: flex;
+	flex-direction: column;
+	padding-left: 230px;
+	padding-right: 230px;
+	padding-top: 40px;
+}
+
+.center {
+	text-align: center;
+}
+
+.form_container {
+	background-color: theme("colors.uranianblue");
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+	height: 500px;
+	border-radius: theme("borderRadius.rounded");
+}
+
+.form_container img {
+	width: 250px;
+	align-self: center;
+	padding-top: 40px;
+}
+
+.home_container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.input_container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100px;
+}
+
+.input {
+	color: theme("colors.grey");
+	border-radius: theme("borderRadius.roundedbig");
+	padding: 10px 24px;
+	line-height: 1;
+	font-size: theme("fontSize.base");
+}
+
+.label {
+	color: theme("colors.yinblue");
+	font-size: theme("fontSize.lg");
+}
+
+.main_button {
+	background-color: theme("colors.airsupblue");
+	color: theme("colors.greylight");
+	border-radius: theme("borderRadius.roundedbig");
+	padding: 10px 30px;
+	line-height: 1;
+	min-width: 150px;
+	font-size: theme("fontSize.base");
+}
+
+.button_container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.error_message {
+	color: theme("colors.red");
+	font-weight: 600;
+	font-size: theme("fontSize.base");
+}
+
+
+.footer{
+	position: absolute;
+	bottom: 40px;
+	background-color: theme("colors.uranianblue");
+	padding: 10px 25px;
+    border-radius: 50px;
+}
+
+.footer span{
+	color: theme("colors.yinblue");
+	font-size: theme("fontSize.sm");
+}
+
+
+
+.sidebar {
+	background-color: theme("colors.uranianblue");
+	color: theme("colors.white");
+	display: inline-flex;
+	font-family: theme("fontFamily.mts");
+	font-size: theme("fontSize.medium");
+	position: fixed;
+	top: 0;
+	bottom: 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    align-items: center;
+}
+.titre {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	justify-content: center;
+	margin-top: 11rem;
+	color: theme("colors.yinblue");
+	font-family: theme("fontFamily.mts");
+	font-size: theme("fontSize.2xl");
+}
+.titre::after {
+	width: 12rem;
+	height: 2px;
+	background-color: theme("colors.uranianblue");
+	display: block;
+	content: '';
+	margin-top: 59px;
+	position: absolute;
+}
+.logo {
+    display: block;
+    position: fixed;
+    width: 250px;
+    height: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+.presentation {
+    font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.lg');
+    padding-top: 10px;
+    padding-left: 29rem;
+    padding-right: 117px;
 }
