@@ -130,7 +130,7 @@ body {
 	flex-direction: row;
 	position: relative;
 	justify-content: center;
-	margin-top: 11rem;
+	margin-top: 6rem;
 	color: theme("colors.yinblue");
 	font-family: theme("fontFamily.mts");
 	font-size: theme("fontSize.2xl");
@@ -156,6 +156,7 @@ body {
 .presentation {
     font-family: theme('fontFamily.mts');
     font-size: theme('fontSize.lg');
+	margin-top: 100px;
     padding-top: 3px;
     padding-left: 22rem;
     padding-right: 117px;
@@ -177,3 +178,31 @@ a + a {
 	top: 10px;
 	right: 92px;
 }
+.content {
+	background-color: theme("colors.uranianblue");
+	font-family: theme('fontFamily.mts');
+    font-size: theme('fontSize.lg');
+	color: theme("colors.yinblue");
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+	height: 368px;
+	border-radius: theme("borderRadius.rounded");	
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 55px;
+	margin-top: 50px;
+}
+.content_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+}
+.information {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 30px;
+}
+	
