@@ -136,6 +136,7 @@ body {
 	color: theme("colors.yinblue");
 	font-family: theme("fontFamily.mts");
 	font-size: theme("fontSize.2xl");
+	line-height: 1;
 }
 .titre::after {
 	width: 12rem;

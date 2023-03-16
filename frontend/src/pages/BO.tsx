@@ -6,6 +6,7 @@ import Navigation from '../components/Navigation';
 // import MyForm from "../components/Form";
 // @ts-ignore
 import Footer from '../components/Footer';
+// @ts-ignore
 import { Link } from 'react-router-dom';
 
 const BO = () => {
