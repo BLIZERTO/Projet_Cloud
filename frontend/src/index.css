@@ -98,6 +98,8 @@ body {
 	background-color: theme("colors.uranianblue");
 	padding: 10px 25px;
     border-radius: 50px;
+	/* transform: translateX(50%);
+    left: 50%; */
 }
 
 .footer span{

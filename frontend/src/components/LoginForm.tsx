@@ -16,6 +16,8 @@ interface FormValues {
 	avatar: string;
 }
 
+
+
 const LoginForm = () => {
 	const navigate = useNavigate();
 
@@ -31,11 +33,14 @@ const LoginForm = () => {
 	});
 
 	const handleSubmit = async (values: FormValues, { setSubmitting, setStatus }) => {
+		
 		try {
 			const response = await axios.post('http://localhost:4000/api/login', values);
-			console.log(response)
+			// console.log(response)
 			if (response.data.token && response.data.token.length > 0) {
 				setStatus({ success: true });
+				//setcookie
+				localStorage.setItem("token", response.data.token);
 				navigate('/bo');
 			} else {
 				setStatus({ error: 'Incorrect username or password' });

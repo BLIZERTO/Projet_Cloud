@@ -12,6 +12,7 @@ import './index.css';
 // @ts-ignore 
 import Archives from './pages/Archives';
 
+//add Context with token to prevent connexion if token is empty
 const App = () => {
 	return (
 		<div>

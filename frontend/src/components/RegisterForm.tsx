@@ -34,9 +34,9 @@ const RegisterForm = () => {
     const handleRegister = async (values: FormValues, { setSubmitting, setStatus }) => {
         try {
             const response = await axios.post('http://localhost:4000/api/register', values);
-            console.log(response)
             if (response.data.success) {
                 setStatus({ success: true });
+                navigate('/');
             }
             else if(response.data === 'user already exist') {
                 setStatus({ error: 'User already exist' });
