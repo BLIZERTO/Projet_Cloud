@@ -1,28 +1,21 @@
 const connectSSH = require ('./connect')
+const {spawn} = require("child_process");
 
 async function createSshProject(projectname, username) {
     try {
-        // Establish SSH connection
-        const ssh = await connectSSH();
-        // Create project
-        const createUserProject = await ssh.execCommand(`sudo mkdir /home/${username}/${projectname}`);
-        console.log(`>>> Project ${projectname} created`);
+        const child = spawn('./ssh/sshCMD/createproject.sh', [projectname, username]);
+        // Log the output of the shell script
+        child.stdout.on('data', (data) => {
+            console.log(`stdout: ${data}`);
+        });
+        child.stderr.on('data', (data) => {
+            console.error(`stderr: ${data}`);
+        });
 
-        // Give user access
-        const giveUserAccess = await ssh.execCommand(`sudo chown -R ${username} /home/${username}/${projectname}`);
-        console.log(`>>> Access for ${projectname} given to ${username}`);
+        child.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+        });
 
-        // Give rights to write & read
-        const giveUserRights = await ssh.execCommand(`sudo chmod 700 /home/${username}/${projectname}`);
-        console.log(`>>> Access for ${projectname} to Write & Read given to ${username}`);
-
-        //Create project config
-        const createProjectConfig = await ssh.execCommand(`sudo sh nginx-config.sh ${projectname} ${username}`);
-        console.log('>>> Project Config created');
-
-        // Disconnect SSH connection
-        await ssh.dispose();
-        console.log('Disconnected from server');
     } catch (err) {
         console.log(`Error: ${err}`);
     }

@@ -3,6 +3,7 @@ const createDatabase = require("../ssh/createSshDB");
 const createPassword = require("../lib/createPassword");
 const createSshProject = require("../ssh/createSshProject")
 const {User} = require("../model/index");
+const Client = require('ssh2').Client;
 
 const createProject = async (req, res) => {
     //get Username with ID provided
@@ -17,9 +18,8 @@ const createProject = async (req, res) => {
         project.db_username = project.name.replace(/ /g,'') + '_admin';
         project.db_password = createPassword();
         project.save();
-
-        await createSshProject(project.name,userName)
         await createDatabase(project.db_name, project.db_username, project.db_password);
+        await createSshProject(project.name,userName)
 
         res.json({message: `Project  [${project.name}]  created` });
 };

@@ -27,7 +27,7 @@ routes.get("/", (req, res) => res.send("Server run"));
 routes.post("/login", login);
 routes.post("/register", register);
 // creer un projet
-// routes.post("/createvolume", createVolume.createUserVolume);
+routes.post("/createvolume", createProject);
 // recuperer tous les projets
 routes.post("/getallvolumesbyid", createVolume.getAllUserVolumeByID);
 routes.get("/allvolume", createVolume.getAllVolume);
