@@ -6,18 +6,13 @@ const getSshDBStats = async (dbName) =>{
         const ssh = await connectSSH();
         const { stdout: connectStdout, stderr: connectStderr } = await ssh.execCommand(`sudo mongosh`);
         console.log(">>> Enter Mongo DB mod");
-        if (connectStderr) {
-            throw new Error(`Failed to enter: ${connectStderr}`);
-        }
 
-        const { stdout: selectStdout, stderr: selectStderr } = await ssh.execCommand(`use ${dbName}`,{cwd:'/bin/src/mongosh'});
+        const selectDB = await ssh.execCommand(`use ${dbName}`);
         console.log(`>>> ${dbName} selected`);
-        if (selectStderr) {
-            throw new Error(`Failed to select db : ${selectStderr}`);
-        }
 
         // get db sizes
         const { stdout: statsStdout, stderr: statsStderr } = await ssh.execCommand('"db.stats()"');
+        console.log(statsStdout)
         if (statsStderr) {
             throw new Error(`Failed to get DB stats: ${statsStderr}`);
         }
@@ -36,7 +31,7 @@ const getSshVolumeStats = async (volumeName, username) => {
         // Establish SSH connection
         const ssh = await connectSSH();
         // get db sizes
-        const { stdout: statsStdout, stderr: statsStderr }  = await ssh.execCommand(`sudo du -sh /home/${username}/${volumeName}/`);
+        const { stdout: statsStdout, stderr: statsStderr }  = await ssh.execCommand(`sudo du -h /home/${username}/${volumeName}/`);
         if (statsStderr) {
             throw new Error(`Failed to get Volume stats : ${statsStderr}`);
         }
