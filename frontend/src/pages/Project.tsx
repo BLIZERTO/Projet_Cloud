@@ -1,10 +1,13 @@
 // @ts-ignore 
 import React from 'react';
+// @ts-ignore 
 import { displayPartsToString } from 'typescript';
 // @ts-ignore 
 import Navigation from '../components/Navigation';
 // import MyForm from "../components/Form";
+// @ts-ignore 
 import Footer from '../components/Footer';
+// @ts-ignore 
 import { Link } from 'react-router-dom';
 
 const Project = () => {
