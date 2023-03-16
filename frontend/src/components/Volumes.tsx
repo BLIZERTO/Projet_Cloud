@@ -15,22 +15,22 @@ interface Volume {
 
 const VolumeList = () => {
     const [volumes, setVolumes] = useState<Volume[]>([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
+
+    const fetchData = async () => {
         try {
-          const response = await axios.get<{ volume: Volume[] }>(
+          const response = await axios.post<{ volume: Volume[] }>(
             "http://localhost:4000/api/getallvolumesbyid"
           );
-          console.log(response)
           const volumeData = response.data.volume;
           setVolumes(volumeData);
         } catch (error) {
           console.error(error);
         }
       };
-      fetchData();
-    }, []);
+    
+      useEffect(() => {
+        fetchData();
+      }, []);
   
     return (
       <div>

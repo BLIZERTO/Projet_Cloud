@@ -1,18 +1,40 @@
+// {
+//   "compilerOptions": {
+//     "target": "es6",
+//     "module": "commonjs",
+//     "moduleResolution": "node",
+//     "noResolve": false,
+//     "noImplicitAny": false,
+//     "removeComments": true,
+//     "sourceMap": true,
+//     "allowJs": true,
+//     "jsx": "react",
+//     "allowSyntheticDefaultImports": true,
+//     "esModuleInterop": true
+//   },
+//   "exclude": [
+//     "./node_modules/**/*"
+//   ]
+// }
+
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noResolve": false,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "sourceMap": true,
-    "allowJs": true,
+    "target": "es5",
+    "lib": ["dom", "es6", "es2015.promise"],
+    "module": "esnext",
     "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["./node_modules/*", "./src/types/*"]
+    }
   },
-  "exclude": [
-    "./node_modules/**/*"
-  ]
+  "include": ["src/**/*"]
 }

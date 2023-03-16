@@ -4,17 +4,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 // @ts-ignore
 import jwt_decode from "jwt-decode";
-// @ts-ignore
-import { AxiosResponse } from "axios";
 
 interface PersonalInfoProps {
 	username: string;
 	sshpassword: string;
 }
-
-// interface TokenPayload {
-// 	token: any;
-// }
 
 const PersonalInfo: React.FC<PersonalInfoProps> = ({ username, sshpassword }) => {
 	return (
@@ -27,17 +21,17 @@ const PersonalInfo: React.FC<PersonalInfoProps> = ({ username, sshpassword }) =>
 
 function getToken(token: string): any {
 	const tokenString = localStorage.getItem(token) as string;
-
-	const userToken = jwt_decode(tokenString);
-	return userToken;
+	// const userToken = jwt_decode(tokenString);
+	
+	return tokenString;
 }
 
 
 
 const CollapsiblePersonalInfo: React.FC = () => {
 
-	const decodedToken = getToken("token");
-	// console.log(decodedToken.id);
+	// const decodedToken = getToken("token");
+	// // console.log(decodedToken.id);
 	const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 	const [personalInfo, setPersonalInfo] = useState<PersonalInfoProps>({
 		username: "",
@@ -45,42 +39,35 @@ const CollapsiblePersonalInfo: React.FC = () => {
 	});
 
 
-	const handleButtonClick = () => {
+	const handleButtonClick = async () => {
 		setIsCollapsed(!isCollapsed);
+		await fetchPersonalInfo();
 	};
 
-	useEffect(() => {
-		// axios.post("http://localhost:4000/api/getallvolumesbyid", {data : {id: decodedToken.id}}).then((response) => {
-		axios.post("http://localhost:4000/api/getallvolumesbyid").then((response) => {
+	
+	const fetchPersonalInfo = async () => {
+		const tokenString = localStorage.getItem("token") as string;
+		console.log(getToken);
+		try {
+			const response = await axios.post("http://localhost:4000/api/getallvolumesbyid", {
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `JWT ${tokenString}`,
+				},
+			});
 			setPersonalInfo(response.data);
 			console.log(response)
-		});
-		console.log(getToken)
-	}, []);
-
-	interface MyData {
-		id: any;
-	}
-	const [data, setData] = useState<MyData | null>(null);
-	const handleClick = async () => {
-		console.log(data);
-		try {
-			const response: AxiosResponse<MyData> = await axios.get<MyData>(
-				"http://localhost:4000/api/getallvolumesbyid"
-			);
-			setData(response.data);
-			console.log(response);
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
 
+
 	return (
 		<div>
-			<button onClick={handleClick}>Click</button>
 			<button onClick={handleButtonClick}>
-				{isCollapsed ? "Show" : "Hide"} Personal Info
+				{isCollapsed ? "show" : "hide"} Personal Info
 			</button>
 			{!isCollapsed && <PersonalInfo {...personalInfo} />}
 		</div>
