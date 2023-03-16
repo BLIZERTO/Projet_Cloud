@@ -1,4 +1,3 @@
-const connectSSH = require ('./connect')
 const {spawn} = require("child_process");
 
 async function createSshProject(projectname, username) {
