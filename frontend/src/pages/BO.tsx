@@ -25,11 +25,10 @@ const BO = () => {
             </div>
             <div className='buttons'>
                 <Link to="/about">Compte utilisateur</Link>
-                <Link to="/about">Ajouter un projet</Link>
-            </div>
-            <footer>
+                <Link to="/archives">Ajouter un projet</Link>
+                
                 <Footer></Footer>
-            </footer>  
+            </div>
         </div>
         
     );
