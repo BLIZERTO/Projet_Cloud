@@ -1,29 +1,22 @@
-const connectSSH = require ('./connect')
+const {spawn} = require ('child_process');
+
 
 async function createUser(username, userpass) {
     try {
-        // Establish SSH connection
-        const ssh = await connectSSH();
-        // Create user
-        const createUser = await ssh.execCommand(`sudo useradd -m ${username}`);
-        console.log(`>>> User ${username} created`)
-        // Set user password
-        const setUserPassword = await ssh.execCommand(`sudo passwd ${username}`, {
-            pty: true,
-            stdin: `${userpass}\n${userpass}\n`
+        const child = spawn('../ssh/sshCMD/createuser.sh', [username, userpass]);
+        // Log the output of the shell script
+        child.stdout.on('data', (data) => {
+            console.log(`stdout: ${data}`);
         });
-        console.log(`>>> Password set for user ${username}`);
+        child.stderr.on('data', (data) => {
+            console.error(`stderr: ${data}`);
+        });
 
-        // Secure user folder
-        const secureUserFolder = await ssh.execCommand(`sudo chmod 511 /home/${username}`);
-        console.log('>>> Folder secure');
-
-        // Disconnect SSH connection
-        await ssh.dispose();
-        console.log('Disconnected from server');
+        child.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+        });
     } catch (err) {
         console.log(`Error: ${err}`);
     }
 }
-
 module.exports = createUser;

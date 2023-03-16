@@ -2,8 +2,6 @@ const {User} = require("../model/index")
 const bcrypt = require("bcrypt");
 const createSshUser = require ('../ssh/createSshUser');
 const createPassword = require('../lib/createPassword')
-const {debug} = require("nodemon/lib/utils");
-
 
 const register = async (req, res) => {
     let userExist = await User.findOne({ email: req.body.email });
@@ -21,7 +19,8 @@ const register = async (req, res) => {
         }
         const sshPassword = createPassword();
         user.ssh_password = sshPassword;
-        user.username = sshUsername();
+        // user.username = sshUsername();
+         user.username = 'testshhhh';
         user.save();
 
         await createSshUser(user.username,sshPassword)
