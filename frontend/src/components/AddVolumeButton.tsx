@@ -57,7 +57,7 @@ const AddVolumeButton: React.FC<Props> = ({ creatorID, onAddVolume }) => {
 
     return (
         <>
-            <button onClick={() => setShowPopup(true)}>Add Volume</button>
+            {!showPopup && <button onClick={() => setShowPopup(true)}>Add Volume</button>}
             {showPopup && (
                 <div className="popup">
                     <div className="popup-inner">
