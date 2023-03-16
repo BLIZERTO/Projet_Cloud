@@ -22,7 +22,7 @@ app.use("/api", routes);
 
 
 /////////start server//////////////
-app.listen(process.env.PORT || 5000, () => console.log(`server run at ${process.env.PORT}  ${`http://localhost:1000/api`}`));
+app.listen(process.env.PORT || 5000, () => console.log(`server run at ${`http://localhost:${process.env.PORT}/api`}`));
 
 
 
