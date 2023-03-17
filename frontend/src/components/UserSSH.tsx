@@ -47,7 +47,7 @@ const CollapsiblePersonalInfo: React.FC = () => {
 
 	const fetchPersonalInfo = async () => {
 		// const tokenString = localStorage.getItem("token") as string;
-		console.log(decodedToken.id, "decodedToken.id");
+		// console.log(decodedToken.id, "decodedToken.id");
 		try {
 			const response = await axios.post("http://localhost:4000/api/getallvolumesbyid", {
 				headers: {

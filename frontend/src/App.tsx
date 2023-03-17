@@ -11,10 +11,12 @@ import Register from './pages/Register';
 import './index.css';
 // @ts-ignore 
 import Archives from './pages/Archives';
+// @ts-ignore
 import Project from './pages/Project';
 
+
 //add Context with token to prevent connexion if token is empty
-const App = () => {
+const App: React.FC = () => {
 	return (
 		<div>
 			<Routes>

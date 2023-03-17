@@ -2,18 +2,15 @@
 import React from 'react';
 // @ts-ignore 
 import Footer from "../components/Footer";
-// @ts-ignore 
-import CollapsiblePersonalInfo from '../components/UserSSH';
 // @ts-ignore
 import VolumeList from '../components/Volumes';
 // @ts-ignore
 import Navigation from '../components/Navigation';
+import '../index.css';
 
 
 
 const Archives = () => {
-
-
     return (
         <div>
             <Navigation></Navigation>
@@ -24,9 +21,9 @@ const Archives = () => {
                 <h1 className='titre'><b>Archives</b></h1>
             </div>
             <div className='flex flex-row presentation'>
-                <div className='flex flex-col content'>
+                <div className='flex'>
                     <VolumeList></VolumeList>
-                    <CollapsiblePersonalInfo />
+                    
                 </div>
             </div>
             <div className='buttons'>
