@@ -16,7 +16,7 @@
   echo ">>> Access for $projectname to Write & Read given to $username"
 
   # Création de la configuration du projet
-  sudo sh nginx-config.sh "$projectname" "$username"
+  sudo sh "./nginx-config.sh" "$projectname" "$username"
   echo ">>> Project Config created"
 
 echo "Disconnected from server"
