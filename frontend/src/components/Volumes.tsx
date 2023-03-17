@@ -7,13 +7,14 @@ import jwt_decode from "jwt-decode";
 // @ts-ignore
 import AddVolumeButton from "./AddVolumeButton";
 // @ts-ignore
-import { useNavigate, Link } from 'react-router-dom';
+import {  Link } from 'react-router-dom';
 import '../index.css';
 
 interface Volume {
 	_id: string;
 	name: string;
 	creatorID: string;
+	url: string;
 }
 
 const Volumes: React.FC = () => {
@@ -63,10 +64,12 @@ const Volumes: React.FC = () => {
 		fetchPersonalInfo();
 	}, []);
 
+	
+
 	return (
 		<div className="volumes_list">
 			{volumes.length > 0 ? (
-				volumes.map((volume) =><Link><div className="volume" key={volume._id}><span className="volume-title">{volume.name}</span></div></Link>)
+				volumes.map((volume) =><Link to={`/archives/${volume._id}`} key={volume._id}><div className="volume" key={volume._id}><span className="volume-title">{volume.name}</span></div></Link>)
 			) : (
 				<div className="volume">No volumes found.</div>
 			)}

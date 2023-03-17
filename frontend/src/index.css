@@ -215,13 +215,21 @@ a + a {
 	gap: 40px;
 }
 
-.volume{
+.volumes_list a {
+	background-color: theme("colors.uranianblue");
+    width: 180px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+}
+
+/* .volume{
 	background-color: theme("colors.uranianblue");
 	width: 180px;
 	height: 220px;
 	display: flex;
     justify-content: center;
-}
+} */
 
 .volume-title{
 	color: theme("colors.white");
