@@ -21,7 +21,7 @@ const createProject = async (req, res) => {
         await createDatabase(project.db_name, project.db_username, project.db_password);
         await createSshProject(project.name,userName)
 
-        res.json({message: `Project  [${project.name}]  created` });
+        res.json({project});
 };
 
 
