@@ -1,80 +1,36 @@
-// @ts-ignore
-import React, { useState, useEffect } from "react";
-// @ts-ignore
-import axios from "axios";
-// @ts-ignore
-import jwt_decode from "jwt-decode";
+//@ts-ignore
+import React, { useState } from "react";
 
 interface PersonalInfoProps {
-	username: string;
-	sshpassword: string;
+    db_username: string;
+    db_password: string;
 }
 
-const PersonalInfo: React.FC<PersonalInfoProps> = ({ username, sshpassword }) => {
-	return (
-		<div>
-			<p>Username: {username}</p>
-			<p>Password: {sshpassword}</p>
-		</div>
-	);
+const PersonalInfo: React.FC<PersonalInfoProps> = ({ db_username, db_password }) => {
+    return (
+        <div>
+            <p>Username: {db_username}</p>
+            <p>Password: {db_password}</p>
+        </div>
+    );
 };
 
-function getToken(token: string): any {
-	const tokenString = localStorage.getItem(token) as string;
-	const userToken = jwt_decode(tokenString);
+const CollapsiblePersonalInfo: React.FC<{ db_username: string, db_password: string }> = ({ db_username, db_password }) => {
 
-	return userToken;
-}
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
 
+    const handleButtonClick = () => {
+        setIsCollapsed(!isCollapsed);
+    };
 
-
-const CollapsiblePersonalInfo: React.FC = () => {
-
-	const decodedToken = getToken("token");
-	console.log(decodedToken.id);
-	const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
-	const [personalInfo, setPersonalInfo] = useState<PersonalInfoProps>({
-		username: "",
-		sshpassword: "",
-	});
-
-
-	const handleButtonClick = async () => {
-		setIsCollapsed(!isCollapsed);
-		await fetchPersonalInfo();
-	};
-
-
-	const fetchPersonalInfo = async () => {
-		// const tokenString = localStorage.getItem("token") as string;
-		// console.log(decodedToken.id, "decodedToken.id");
-		try {
-			const response = await axios.post("http://localhost:4000/api/getallvolumesbyid", {
-				headers: {
-					"Content-Type": "application/json",
-					// Authorization: `JWT ${tokenString}`,
-				},
-
-				id: decodedToken.id,
-
-			});
-			setPersonalInfo(response.data);
-			console.log(response)
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
-
-
-	return (
-		<div>
-			<button onClick={handleButtonClick}>
-				{isCollapsed ? "show" : "hide"} Personal Info
-			</button>
-			{!isCollapsed && <PersonalInfo {...personalInfo} />}
-		</div>
-	);
+    return (
+        <div>
+            <button onClick={handleButtonClick}>
+                {isCollapsed ? "show" : "hide"} Personal Info
+            </button>
+            {!isCollapsed && <PersonalInfo db_username={db_username} db_password={db_password} />}
+        </div>
+    );
 };
 
 export default CollapsiblePersonalInfo;

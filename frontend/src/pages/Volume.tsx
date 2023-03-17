@@ -6,29 +6,26 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 // @ts-ignore
 import { useParams } from 'react-router-dom';
-import '../index.css';
 // @ts-ignore
-import { Volume } from "./Volumes";
+import CollapsiblePersonalInfo from "../components/UserSSH"
+import '../index.css';
+
 
 
 interface VolumeParams {
     id: string;
 }
 
+
+
 const VolumePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    // const [volume, setVolume] = useState<Volume>([]);
-    const [result, setResult] = useState<any>([]);
-    function getToken(token: string): any {
-        const tokenString = localStorage.getItem(token) as string;
-        const userToken = jwt_decode(tokenString);
+    const [result, setResult] = useState<any>({});
 
-        return userToken;
-    }
     useEffect(() => {
         const fetchVolume = async () => {
             try {
-                const response = await axios.post<{ result: any}>(
+                const response = await axios.post<{ result: any }>(
                     "http://localhost:4000/api/getonevolume",
                     {
                         id: id,
@@ -39,8 +36,6 @@ const VolumePage: React.FC = () => {
                         },
                     }
                 );
-                // setVolume(volume.filter((volume) => volume._id !== volumeId));
-                // console.log(response.data);
                 setResult(response.data.result);
                 console.log(response.data.result)
             } catch (error) {
@@ -57,7 +52,7 @@ const VolumePage: React.FC = () => {
     return (
         <div className="volume-page">
             <h1>{result.name}</h1>
-            {/* <p>{result.db_username}</p> */}
+            <CollapsiblePersonalInfo db_username={result.db_username} db_password={result.db_password} />
         </div>
     );
 };
