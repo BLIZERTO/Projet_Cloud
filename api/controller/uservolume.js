@@ -35,8 +35,19 @@ const deleteVolumeByID = async (req, res) => {
   }
 };
 
+const getOneVolume = async (req, res) => {
+    let {id} = req.body;
+    const result = await UserVolume.findOne({_id: id}).populate({ path: "creatorID", select: "-password" })
+    .select("email")
+    .select("name")
+    .select("db_username")
+    .select("db_password");
+    res.json({result})
+}
+
 module.exports = {
   getAllUserVolumeByID,
   getAllVolume,
   deleteVolumeByID,
+  getOneVolume
 };
