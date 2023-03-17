@@ -1,7 +1,7 @@
 const {spawn} = require ('child_process');
 
 
-async function createUser(username, userpass) {
+async function  createUser(username, userpass) {
     try {
         const child = spawn('./ssh/sshCMD/createuser.sh', [username, userpass]);
         // Log the output of the shell script
