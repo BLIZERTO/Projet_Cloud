@@ -1,26 +1,22 @@
-const connectSSH = require ('./connect')
+const {spawn} = require("child_process");
 
 const getSshDBStats = async (dbName) =>{
     try {
-        // Establish SSH connection
-        const ssh = await connectSSH();
-        const { stdout: connectStdout, stderr: connectStderr } = await ssh.execCommand(`sudo mongosh`);
-        console.log(">>> Enter Mongo DB mod");
+        const child = spawn('./ssh/sshCMD/getdbsize.sh', [dbName]);
+        // Log the output of the shell script
+        child.stdout.on('data', (data) => {
+            if (child.stdout) {
+                return data;
+            }
+        });
+        child.stderr.on('data', (data) => {
+            if (child.stderr) { return data;}
+        });
 
-        const selectDB = await ssh.execCommand(`use ${dbName}`);
-        console.log(`>>> ${dbName} selected`);
+        child.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+        });
 
-        // get db sizes
-        const { stdout: statsStdout, stderr: statsStderr } = await ssh.execCommand('"db.stats()"');
-        console.log(statsStdout)
-        if (statsStderr) {
-            throw new Error(`Failed to get DB stats: ${statsStderr}`);
-        }
-        console.log(`>>> Stats from ${dbName} given`);
-        const stats = JSON.parse(stdout);
-        ssh.dispose();
-        console.log('Disconnected from server')
-        return stats;
     } catch (err) {
         console.log(`Error: ${err}`);
     }
@@ -28,18 +24,19 @@ const getSshDBStats = async (dbName) =>{
 
 const getSshVolumeStats = async (volumeName, username) => {
     try {
-        // Establish SSH connection
-        const ssh = await connectSSH();
-        // get db sizes
-        const { stdout: statsStdout, stderr: statsStderr }  = await ssh.execCommand(`sudo du -h /home/${username}/${volumeName}/`);
-        if (statsStderr) {
-            throw new Error(`Failed to get Volume stats : ${statsStderr}`);
-        }
-        console.log(`>>> Stats from ${volumeName} given`);
-        const stats = statsStdout;
-        ssh.dispose();
-        console.log('Disconnected from server')
-        return stats;
+        const child = spawn('./ssh/sshCMD/getprojectsize.sh', [volumeName, username]);
+        // Log the output of the shell script
+        child.stdout.on('data', (data) => {
+            console.log(`stdout: ${data}`);
+        });
+        child.stderr.on('data', (data) => {
+            console.error(`stderr: ${data}`);
+        });
+
+        child.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+        });
+
     } catch (err) {
         console.log(`Error: ${err}`);
     }

@@ -3,7 +3,7 @@ import React from 'react';
 // @ts-ignore 
 import Footer from "../components/Footer";
 // @ts-ignore
-import VolumeList from '../components/Volumes';
+import Volumes from '../components/Volumes';
 // @ts-ignore
 import Navigation from '../components/Navigation';
 import '../index.css';
@@ -22,7 +22,7 @@ const Archives = () => {
             </div>
             <div className='flex flex-row presentation'>
                 <div className='flex'>
-                    <VolumeList></VolumeList>
+                    <Volumes></Volumes>
                     
                 </div>
             </div>

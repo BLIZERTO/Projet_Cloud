@@ -13,6 +13,8 @@ import './index.css';
 import Archives from './pages/Archives';
 // @ts-ignore
 import Project from './pages/Project';
+// @ts-ignore
+import VolumePage from './pages/Volume';
 
 
 //add Context with token to prevent connexion if token is empty
@@ -25,6 +27,7 @@ const App: React.FC = () => {
 				<Route path="/register" element={<Register />} />
 				<Route path="/archives" element={<Archives />} />
 				<Route path="/project" element={<Project />} />
+				<Route path="/archives/:id" element={<VolumePage />} />
 			</Routes>
 		</div>
 	);
