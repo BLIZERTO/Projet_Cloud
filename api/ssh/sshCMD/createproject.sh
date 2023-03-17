@@ -15,15 +15,30 @@
   sudo chmod 700 "/home/$username/$projectname"
   echo ">>> Access for $projectname to Write & Read given to $username"
 
-  # Création de la configuration du projet
+  get_port()
+  {
+      PORT=$(shuf -i 81-9999 -n 1);
 
-    WEB_DIR='/home/'$2
+      while (! grep -Fxq $PORT /home/groupe8/ports.txt)
+      do
+          PORT=$(shuf -i 81-9999 -n 1);
 
-    sed -e "s,_;,'$1';,g;s,root_dir,'$WEB_DIR/$1'," /etc/nginx/sites-enabled/default > /etc/nginx/sites-enabled/$1
+          mongosh
+          use cloud_server
+          db.$1.insertOne({port: $PORT})
+          exit
+      done
+  }
 
-    echo -e "\n#Added by nginx-server-block-generator.sh\n127.0.0.1     $1" >> /etc/hosts
+  WEB_DIR='/home/'$2
 
-    /etc/init.d/nginx restart
+  get_port
+  sed -e 's,_;,'$1';,g;s,root_dir,'$WEB_DIR/$1',g;s,http://127.0.0.1:3000/,http://127.0.0.1:'$PORT'/,g' /etc/nginx/sites-enabled/default > /etc/nginx/sites-enabled/$1
+
+  echo -e "\n#Added by nginx-server-block-generator.sh\n127.0.0.1     $1" >> /etc/hosts
+
+  /etc/init.d/nginx restart
+
 
   echo ">>> Project Config created"
 
