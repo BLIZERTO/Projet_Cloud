@@ -1,6 +1,7 @@
 # Get variables from arguments
-  username=$1
-  projectname=$2
+  projectname=$1
+  username=$2
+
 
   # Create project
   sudo mkdir "/home/$username/$projectname"
