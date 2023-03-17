@@ -7,7 +7,7 @@
   echo ">>> User $username created"
 
   # Définition du mot de passe
-echo "$userpass" | passwd --stdin "$username"
+echo "$userpass" | passwd "$username"
   echo ">>> Password set for user $username"
 
   # Sécurisation du dossier utilisateur
