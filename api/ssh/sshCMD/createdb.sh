@@ -6,7 +6,7 @@ dbUsername=$2
 dbPassword=$3
 
 # Switch to MongoDB
-mongosh
+mongosh <<EOF
 echo ">>>>>>> Switch to MongoDB"
 
 # Create database
