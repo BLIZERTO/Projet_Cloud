@@ -18,8 +18,4 @@
   sudo sh nginx-config.sh "$projectname" "$username"
   echo ">>> Project Config created"
 
-
-# Appel de la fonction createProject avec les arguments fournis en ligne de commande
-createProject "$1" "$2"
-
 echo "Disconnected from server"
