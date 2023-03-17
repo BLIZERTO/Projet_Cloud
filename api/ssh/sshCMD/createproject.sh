@@ -17,14 +17,14 @@
 
   # Création de la configuration du projet
 
-WEB_DIR='/home/'$2
+    WEB_DIR='/home/'$2
 
-sed -e "s,_;,'$1';,g;s,root_dir,'$WEB_DIR/$1'," /etc/nginx/sites-enabled/default > /etc/nginx/sites-enabled/$1
+    sed -e "s,_;,'$1';,g;s,root_dir,'$WEB_DIR/$1'," /etc/nginx/sites-enabled/default > /etc/nginx/sites-enabled/$1
 
-echo -e "\n#Added by nginx-server-block-generator.sh\n127.0.0.1     $1" >> /etc/hosts
+    echo -e "\n#Added by nginx-server-block-generator.sh\n127.0.0.1     $1" >> /etc/hosts
 
-/etc/init.d/nginx restart
+    /etc/init.d/nginx restart
 
   echo ">>> Project Config created"
 
-echo "Disconnected from server"
+  echo "Disconnected from server"
