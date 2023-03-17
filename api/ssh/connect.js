@@ -1,25 +1,42 @@
+const { Client } = require('ssh2');
+const fs = require('fs');
 
-const {NodeSSH} = require('node-ssh')
-let ssh = new NodeSSH();
+const sshConfig = {
+    host: '40.124.184.7',
+    port: 22,
+    username: 'groupe8',
+    password: 'hetic2023groupe8RD!',
+};
 
+const sshTunnelConfig = {
+    srcHost: 'localhost',
+    srcPort: 4000,
+    dstHost: '40.124.184.7',
+    dstPort: 80,
+    pty:true
+};
 
-function connectSSH() {
-    return ssh.connect({
-            host: '40.124.184.7',
-            username: 'groupe8',
-            password: 'hetic2023groupe8RD!',
-        })
-        .then(() => {
-            console.log('Connected to server');
-            return ssh; // renvoie l'objet ssh
-        })
-        .catch(err => {
-            console.log(`Error connecting to server: ${err}`);
-            throw err; // lance une erreur
+const sshClient = new Client();
+
+sshClient
+    .on('ready', () => {
+        console.log('SSH client connected');
+
+        sshClient.shell((err, stream) => {
+            if (err) {
+                console.log('Error creating shell: ', err);
+                sshClient.end();
+                return;
+            }
+            stream.on('data', (data) => {
+                console.log(`Shell output: ${data}`);
+            });
+
+            stream.on('close', () => {
+                console.log('Shell closed');
+                sshClient.end();
+            });
         });
-}
-module.exports = connectSSH;
 
-
-
-
+})
+    .connect(sshConfig);
