@@ -17,8 +17,8 @@ interface VolumeParams {
 
 const VolumePage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const [volume, setVolume] = useState<Volume>([]);
-
+    // const [volume, setVolume] = useState<Volume>([]);
+    const [result, setResult] = useState<any>([]);
     function getToken(token: string): any {
         const tokenString = localStorage.getItem(token) as string;
         const userToken = jwt_decode(tokenString);
@@ -28,10 +28,21 @@ const VolumePage: React.FC = () => {
     useEffect(() => {
         const fetchVolume = async () => {
             try {
-                const response = await axios.get<Volume>(
-                    `http://localhost:4000/api/volume/${id}`
+                const response = await axios.post<{ result: any}>(
+                    "http://localhost:4000/api/getonevolume",
+                    {
+                        id: id,
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
-                setVolume(response.data);
+                // setVolume(volume.filter((volume) => volume._id !== volumeId));
+                // console.log(response.data);
+                setResult(response.data.result);
+                console.log(response.data.result)
             } catch (error) {
                 console.error(error);
             }
@@ -39,15 +50,14 @@ const VolumePage: React.FC = () => {
         fetchVolume();
     }, [id]);
 
-    if (!volume) {
+    if (!result) {
         return <div>Loading...</div>;
     }
-
+    console.log(result)
     return (
         <div className="volume-page">
-            <h1>{volume.name}</h1>
-            <p>{volume.url}</p>
-            <p>Created by {volume.creatorID}</p>
+            <h1>{result.name}</h1>
+            {/* <p>{result.db_username}</p> */}
         </div>
     );
 };

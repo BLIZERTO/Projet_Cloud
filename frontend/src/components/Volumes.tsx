@@ -31,14 +31,26 @@ const Volumes: React.FC = () => {
 		return userToken;
 	}
 
-	// const handleRemoveVolume = async (volumeId: string) => {
-	// 	try {
-	// 		await axios.delete(`http://localhost:4000/api/volume/${volumeId}`);
-	// 		setVolumes(volumes.filter((volume) => volume._id !== volumeId));
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
+	const handleRemoveVolume = async (volumeId: string) => {
+		try {
+			
+			const response = await axios.post<{ volume: Volume[] }>(
+				"http://localhost:4000/api/deletevolumebyid/",
+				{
+					id: volumeId,
+				},
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+			setVolumes(volumes.filter((volume) => volume._id !== volumeId));
+			console.log(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
 		const fetchPersonalInfo = async () => {
@@ -69,14 +81,14 @@ const Volumes: React.FC = () => {
 	return (
 		<div className="volumes_list">
 			{volumes.length > 0 ? (
-				volumes.map((volume) =><Link to={`/archives/${volume._id}`} key={volume._id}><div className="volume" key={volume._id}><span className="volume-title">{volume.name}</span></div></Link>)
+				volumes.map((volume) =><div className="volume" key={volume._id}><Link to={`/archives/${volume._id}`} key={volume._id}><span className="volume-title">{volume.name}</span></Link><button onClick={() => handleRemoveVolume(volume._id)}>Remove</button></div>)
 			) : (
 				<div className="volume">No volumes found.</div>
 			)}
 			<div className="volume">
 				<AddVolumeButton creatorID={getToken("token").id} onAddVolume={handleAddVolume} />
 			</div>
-			{/* <button onClick={() => handleRemoveVolume(volume._id)}>Remove</button> */}
+			{/*  */}
 		</div>
 	);
 };
