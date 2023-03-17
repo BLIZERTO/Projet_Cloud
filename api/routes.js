@@ -5,12 +5,9 @@ const register = require("./controller/register");
 const createProject = require("./controller/createProject");
 const createVolume = require('./controller/uservolume');
 const { getUserByID, getAllUser} = require("./controller/getUser");
-<<<<<<< HEAD
 const getDBStatsFromSsh = require("./controller/getDBStatsFromSsh");
 const getVolumeStatsFromSsh = require("./controller/getVolumeStatsFromSsh");
-=======
 const {deleteVolumeByID } = require("./controller/uservolume")
->>>>>>> ouzepe
 
 const db = require("mongoose");
 const dotenv = require("dotenv");
