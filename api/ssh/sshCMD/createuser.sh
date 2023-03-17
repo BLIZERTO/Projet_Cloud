@@ -1,6 +1,6 @@
 # Get variables from arguments
-  username="test"
-  userpass="test"
+  username=&1
+  userpass=&2
 
   # Création de l'utilisateur
   sudo useradd -m "$username"
@@ -15,6 +15,5 @@
   echo ">>> Folder secure"
 
 # Appel de la fonction createUser avec les arguments fournis en ligne de commande
-createUser "$1" "$2"
 
 echo "Disconnected from server"
