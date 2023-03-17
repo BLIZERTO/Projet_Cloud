@@ -22,7 +22,7 @@ const getSshDBStats = async (dbName) =>{
 
 const getSshVolumeStats = async (volumeName, username) => {
     try {
-        const child = spawn('/sshCMD/getprojectsize.sh', [volumeName, username]);
+        const child = spawn('./sshCMD/getprojectsize.sh', [volumeName, username]);
         // Log the output of the shell script
         child.stdout.on('data', (data) => {
             console.log(`stdout: ${data}`);
