@@ -164,7 +164,7 @@ body {
     padding-left: 22rem;
     padding-right: 117px;
 }
-a + a {
+.redirect + .redirect {
 	margin-left: 181px;
 }
 .buttons {
@@ -174,7 +174,7 @@ a + a {
     font-size: theme('fontSize.lg');
 	margin-top: 80px;
 	align-items: center;
-	flex-direction: column;
+	flex-direction: row;
 }
 .avatar {
 	position: absolute;
@@ -214,14 +214,6 @@ a + a {
     grid-template-columns: repeat(4, 1fr);
 	gap: 40px;
 }
-
-/* .volumes_list a {
-	background-color: theme("colors.uranianblue");
-    width: 180px;
-    height: 220px;
-    display: flex;
-    justify-content: center;
-} */
 
 .volume{
 	background-color: theme("colors.uranianblue");

@@ -26,7 +26,6 @@ const App: React.FC = () => {
 				<Route path="/bo" element={<BO />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/archives" element={<Archives />} />
-				<Route path="/project" element={<Project />} />
 				<Route path="/archives/:id" element={<VolumePage />} />
 			</Routes>
 		</div>

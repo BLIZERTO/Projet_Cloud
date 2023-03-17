@@ -7,7 +7,9 @@ import jwt_decode from "jwt-decode";
 // @ts-ignore
 import { useParams } from 'react-router-dom';
 // @ts-ignore
-import CollapsiblePersonalInfo from "../components/UserSSH"
+import CollapsiblePersonalInfo from "../components/UserSSH";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 import '../index.css';
 
 
@@ -50,10 +52,29 @@ const VolumePage: React.FC = () => {
     }
     console.log(result)
     return (
-        <div className="volume-page">
-            <h1>{result.name}</h1>
-            <CollapsiblePersonalInfo db_username={result.db_username} db_password={result.db_password} />
+        <div>
+        <Navigation></Navigation>
+        <div className='avatar'>
+                <img src="../assets/Ellipse_2avatar.png" alt="Logo" />
+            </div>
+        <div>
+            <h1 className='titre'><b>Accueil</b></h1>
         </div>
+        <div className='content_container'>
+            <div className="content">
+            Aliquam scelerisque elit quam, sit amet euismod ipsum semper in. Vivamus sodales sollicitudin dapibus. Fusce id tellus quis leo feugiat pellentesque nec sed justo. Suspendisse tristique, nibh at tincidunt efficitur, ipsum mi blandit diam, eu bibendum orci ex sed felis. Donec faucibus luctus tortor, at lacinia justo tristique a. Morbi dapibus vestibulum nunc a convallis. 
+            In bibendum ullamcorper odio, ut tempus elit eleifend eget. Fusce euismod lorem non tincidunt sagittis.
+                <div className='information'>
+                    <div>
+                    <CollapsiblePersonalInfo db_username={result.db_username} db_password={result.db_password} />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className='buttons'>
+             <Footer></Footer>
+        </div>
+    </div>
     );
 };
 

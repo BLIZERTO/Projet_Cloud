@@ -26,10 +26,7 @@ const Archives = () => {
                     
                 </div>
             </div>
-            <div className='buttons'>
-                {/* <Link to="/about">Compte utilisateur</Link> */}
-                {/* <Link to="/archives">Ajouter un projet</Link> */}
-                
+            <div className='buttons'>    
                 <Footer></Footer>
             </div>
         </div>

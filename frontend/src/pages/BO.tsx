@@ -26,8 +26,8 @@ const BO = () => {
                </div> 
             </div>
             <div className='buttons'>
-                <Link to="/about">Compte utilisateur</Link>
-                <Link to="/archives">Ajouter un projet</Link>
+                <Link className='redirect' to="/about">Compte utilisateur</Link>
+                <Link className='redirect' to="/archives">Ajouter un projet</Link>
                 <Footer></Footer>
             </div>
         </div>
