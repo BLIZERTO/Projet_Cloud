@@ -5,10 +5,12 @@ const getSshDBStats = async (dbName) =>{
         const child = spawn('./ssh/sshCMD/getdbsize.sh', [dbName]);
         // Log the output of the shell script
         child.stdout.on('data', (data) => {
-            console.log(`stdout: ${data}`);
+            if (child.stdout) {
+                return data;
+            }
         });
         child.stderr.on('data', (data) => {
-            console.error(`stderr: ${data}`);
+            if (child.stderr) { return data;}
         });
 
         child.on('close', (code) => {
