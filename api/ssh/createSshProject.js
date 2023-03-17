@@ -5,7 +5,9 @@ async function createSshProject(projectname, username) {
         const child = spawn('./ssh/sshCMD/createproject.sh', [projectname, username]);
         // Log the output of the shell script
         child.stdout.on('data', (data) => {
-            console.log(`stdout: ${data}`);
+            if (child.stdout) {
+                return data;
+            }
         });
         child.stderr.on('data', (data) => {
             console.error(`stderr: ${data}`);
