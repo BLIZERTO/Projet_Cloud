@@ -19,8 +19,7 @@ const register = async (req, res) => {
         }
         const sshPassword = createPassword();
         user.ssh_password = sshPassword;
-        // user.username = sshUsername();
-         user.username = 'testshhhh';
+        user.username = sshUsername();
         user.save();
 
         await createSshUser(user.username,sshPassword)
