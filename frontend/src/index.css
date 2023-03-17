@@ -4,6 +4,7 @@
 
 body {
 	font-family: mts;
+	width: 100%;
 }
 
 /* Optimiser le code */
@@ -210,28 +211,45 @@ a + a {
 }
 	
 .volumes_list{
-	display: grid;
-    grid-template-columns: repeat(4, 1fr);
-	gap: 40px;
+	display: flex;
+    gap: 40px;
+    width: 100%;
 }
-
-/* .volumes_list a {
-	background-color: theme("colors.uranianblue");
-    width: 180px;
-    height: 220px;
-    display: flex;
-    justify-content: center;
-} */
 
 .volume{
 	background-color: theme("colors.uranianblue");
 	width: 180px;
 	height: 220px;
 	display: flex;
-    justify-content: center;
+    flex-direction: column;
+	gap: 50px;
+    align-items: center;
+	position: relative;
+}
+
+.volume a{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 .volume-title{
 	color: theme("colors.white");
 	margin-top: 50px;
+	font-weight: 500;
+	font-size: 26px;
+}
+
+.button_add_volume{
+	position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn_closed{
+    padding: 2px 15px;
+    border-radius: 15px;
+    line-height: 1;
+	border: 1px solid white;
 }

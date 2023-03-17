@@ -12,23 +12,14 @@ import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 // @ts-ignore
 import * as Yup from "yup";
-// @ts-ignore
-import { v4 as uuidv4 } from 'uuid';
+
 import '../index.css';
 
 interface Volume {
 	_id: string;
 	name: string;
 	creatorID: string;
-	// url: string;
 }
-
-
-// interface Volume {
-//     _id: string;
-//     name: string;
-//     creatorID: string;
-// }
 
 interface Props {
 	creatorID: string;
@@ -61,7 +52,6 @@ const Volumes: React.FC = () => {
 			_id: "",
 			name: "",
 			creatorID: creatorID,
-			// url: "",
 		};
 
 		const validationSchema = Yup.object({
@@ -88,13 +78,12 @@ const Volumes: React.FC = () => {
 				}
 			};
 			fetchVolumes();
-		}, []);
+		}, [creatorID]);
 		const handleSubmit = async (values: Volume, { setSubmitting, setStatus }) => {
 			try {
 				const response = await axios.post(' http://localhost:4000/api/createvolume', {name: values.name, creatorID: values.creatorID});
 				console.log(values)
 				if (response) {
-					// onAddVolume(response.data.volume);
 					setStatus({ success: true });
 					console.log(response)
 					setVolumes([...volumes, response.data.project]);
@@ -114,7 +103,7 @@ const Volumes: React.FC = () => {
 
 		return (
 			<>
-				{!showPopup && <button onClick={() => setShowPopup(true)}>Add Volume</button>}
+				{!showPopup && <button className="button_add_volume" onClick={() => setShowPopup(true)}><img src="../assets/Add.png" alt="" /></button>}
 				{showPopup && (
 					<div className="popup">
 						<div className="popup-inner">
@@ -131,9 +120,9 @@ const Volumes: React.FC = () => {
 											<ErrorMessage name="name" component="div" />
 										</div>
 										<Field type="hidden" name="creatorID" value={creatorID} />
-										{/* <Field type="hidden" name="creatorID" value={_id} /> */}
+									
 										<button type="submit" disabled={isSubmitting}>
-											Add
+											
 										</button>
 										{status && status.error && <div className="error_message">{status.error}</div>}
 									</Form>
@@ -161,7 +150,6 @@ const Volumes: React.FC = () => {
 				}
 			);
 			setVolumes(volumes.filter((volume) => volume._id !== volumeId));
-			// setVolumes(response.data.volume)
 			console.log(response.data);
 		} catch (error) {
 			console.error(error);
@@ -197,7 +185,7 @@ const Volumes: React.FC = () => {
 	return (
 		<div className="volumes_list">
 			{volumes.length > 0 ? (
-				volumes.map((volume) => <div className="volume" key={volume._id}><Link to={`/archives/${volume._id}`}><span className="volume-title">{volume.name}</span><button onClick={() => handleRemoveVolume(volume._id)}>Remove</button></Link></div>)
+				volumes.map((volume) => <div className="volume" key={volume._id}><Link to={`/archives/${volume._id}`}><span className="volume-title">{volume.name}</span></Link><button className="btn_closed" onClick={() => handleRemoveVolume(volume._id)}>Remove</button></div>)
 				) : (
 				<div className="volume">No volumes found.</div>
 			)}
