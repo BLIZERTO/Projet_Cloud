@@ -1,6 +1,6 @@
 # Get variables from arguments
-  username=&1
-  userpass=&2
+  username=$1
+  userpass=$2
 
   # Création de l'utilisateur
   sudo useradd -m "$username"
