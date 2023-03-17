@@ -1,25 +1,29 @@
-const {spawn} = require("child_process");
+const { spawn } = require('child_process');
 
-const getSshDBStats = async (dbName) =>{
-    try {
+const getSshDBStats = (dbName) => {
+    return new Promise((resolve, reject) => {
         const child = spawn('./ssh/sshCMD/getdbsize.sh', [dbName]);
-        // Log the output of the shell script
-        child.stdout.on('data', (data) => {
 
+        let stdoutData = '';
+        let stderrData = '';
+
+        child.stdout.on('data', (data) => {
+            stdoutData += data;
         });
+
         child.stderr.on('data', (data) => {
-            if (child.stderr) {
-                return data;}
+            stderrData += data;
         });
 
         child.on('close', (code) => {
-            console.log(`child process exited with code ${code}`);
+            if (code !== 0) {
+                reject(new Error(`child process exited with code ${code}: ${stderrData}`));
+            } else {
+                resolve(stdoutData);
+            }
         });
-
-    } catch (err) {
-        console.log(`Error: ${err}`);
-    }
-}
+    });
+};
 
 const getSshVolumeStats = async (volumeName, username) => {
     try {
