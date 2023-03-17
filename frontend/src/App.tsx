@@ -12,8 +12,6 @@ import './index.css';
 // @ts-ignore 
 import Archives from './pages/Archives';
 // @ts-ignore
-import Project from './pages/Project';
-// @ts-ignore
 import VolumePage from './pages/Volume';
 
 

@@ -23,7 +23,6 @@ const Archives = () => {
             <div className='flex flex-row presentation'>
                 <div className='flex'>
                     <Volumes></Volumes>
-                    
                 </div>
             </div>
             <div className='buttons'>    

@@ -3,21 +3,12 @@ import React, { useEffect, useState } from "react";
 // @ts-ignore
 import axios from "axios";
 // @ts-ignore
-import jwt_decode from "jwt-decode";
-// @ts-ignore
 import { useParams } from 'react-router-dom';
 // @ts-ignore
 import CollapsiblePersonalInfo from "../components/UserSSH";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import '../index.css';
-
-
-
-interface VolumeParams {
-    id: string;
-}
-
 
 
 const VolumePage: React.FC = () => {
