@@ -6,7 +6,9 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 // @ts-ignore
 import CollapsiblePersonalInfo from "../components/UserSSH";
+//@ts-ignore
 import Navigation from "../components/Navigation";
+//@ts-ignore
 import Footer from "../components/Footer";
 import '../index.css';
 

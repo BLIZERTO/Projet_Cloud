@@ -115,20 +115,20 @@ const Volumes: React.FC = () => {
 								{({ isSubmitting, status }) => (
 									<Form>
 										<div className="form-group">
-											<label htmlFor="name">Name:</label>
-											<Field type="text" name="name" />
-											<ErrorMessage name="name" component="div" />
+											<label className="label" htmlFor="name">Name:</label>
+											<Field className="input small" type="text" name="name" />
+											<ErrorMessage className="error_message" name="name" component="div" />
 										</div>
 										<Field type="hidden" name="creatorID" value={creatorID} />
 									
-										<button type="submit" disabled={isSubmitting}>
-											
+										<button className="main_button" type="submit" disabled={isSubmitting}>
+											Ajouter
 										</button>
 										{status && status.error && <div className="error_message">{status.error}</div>}
 									</Form>
 								)}
 							</Formik>
-							<button onClick={() => setShowPopup(false)}>Cancel</button>
+							<button className="btn_closed" onClick={() => setShowPopup(false)}>Cancel</button>
 						</div>
 					</div>
 				)}
@@ -187,7 +187,7 @@ const Volumes: React.FC = () => {
 			{volumes.length > 0 ? (
 				volumes.map((volume) => <div className="volume" key={volume._id}><Link to={`/archives/${volume._id}`}><span className="volume-title">{volume.name}</span></Link><button className="btn_closed" onClick={() => handleRemoveVolume(volume._id)}>Remove</button></div>)
 				) : (
-				<div className="volume">No volumes found.</div>
+				<div className="volume"><span>No volumes found.</span></div>
 			)}
 			<div className="volume">
 				<AddVolumeButton creatorID={getToken("token").id} onAddVolume={handleAddVolume} />

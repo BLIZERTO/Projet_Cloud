@@ -22,6 +22,7 @@ body {
 	padding-left: 230px;
 	padding-right: 230px;
 	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 .center {
@@ -92,23 +93,17 @@ body {
 	font-size: theme("fontSize.base");
 }
 
-
-.footer{
-	position: absolute;
-	bottom: 40px;
+.footer {
 	background-color: theme("colors.uranianblue");
 	padding: 10px 25px;
-    border-radius: 50px;
-	/* transform: translateX(50%);
-    left: 50%; */
+	border-radius: 50px;
+	margin-top: 40px;
 }
 
-.footer span{
+.footer span {
 	color: theme("colors.yinblue");
 	font-size: theme("fontSize.sm");
 }
-
-
 
 .sidebar {
 	background-color: theme("colors.uranianblue");
@@ -119,14 +114,19 @@ body {
 	position: fixed;
 	top: 0;
 	bottom: 0;
+	width: 300px;
 }
-
+.sidebar .logo{
+	padding: 0;
+	margin-top: 20px;
+	margin-left: 20px;
+}
 .menu {
-    display: flex;
-    justify-content: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	align-items: center;
 }
 .titre {
 	display: flex;
@@ -144,26 +144,26 @@ body {
 	height: 2px;
 	background-color: theme("colors.uranianblue");
 	display: block;
-	content: '';
+	content: "";
 	margin-top: 59px;
 	position: absolute;
 }
 .logo {
-    display: block;
-    position: fixed;
-    width: 250px;
-    height: 100px;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 25px;
+	display: block;
+	position: fixed;
+	width: 250px;
+	height: 100px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 25px;
 }
 .presentation {
-    font-family: theme('fontFamily.mts');
-    font-size: theme('fontSize.lg');
+	font-family: theme("fontFamily.mts");
+	font-size: theme("fontSize.lg");
 	margin-top: 100px;
-    padding-top: 3px;
-    padding-left: 22rem;
-    padding-right: 117px;
+	padding-top: 3px;
+	padding-left: 22rem;
+	padding-right: 117px;
 }
 .redirect + .redirect {
 	margin-left: 181px;
@@ -171,8 +171,8 @@ body {
 .buttons {
 	display: flex;
 	justify-content: center;
-	font-family: theme('fontFamily.mts');
-    font-size: theme('fontSize.lg');
+	font-family: theme("fontFamily.mts");
+	font-size: theme("fontSize.lg");
 	margin-top: 80px;
 	align-items: center;
 	flex-direction: row;
@@ -184,14 +184,14 @@ body {
 }
 .content {
 	background-color: theme("colors.uranianblue");
-	font-family: theme('fontFamily.mts');
-    font-size: theme('fontSize.lg');
+	font-family: theme("fontFamily.mts");
+	font-size: theme("fontSize.lg");
 	color: theme("colors.yinblue");
 	display: flex;
 	flex-direction: column;
 	width: 800px;
 	height: 368px;
-	border-radius: theme("borderRadius.rounded");	
+	border-radius: theme("borderRadius.rounded");
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 55px;
@@ -200,7 +200,7 @@ body {
 .content_container {
 	display: flex;
 	flex-direction: column;
-	align-items: center;	
+	align-items: center;
 }
 .information {
 	display: flex;
@@ -209,47 +209,94 @@ body {
 	align-items: center;
 	padding-top: 30px;
 }
-	
-.volumes_list{
+
+.volumes_list {
 	display: flex;
-    gap: 40px;
-    width: 100%;
+	gap: 40px;
+	width: 100%;
 }
 
-.volume{
+.volume {
 	background-color: theme("colors.uranianblue");
 	width: 180px;
 	height: 220px;
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 	gap: 50px;
-    align-items: center;
+	align-items: center;
 	position: relative;
 }
 
-.volume a{
+.volume a {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
 }
 
-.volume-title{
+.volume-title {
 	color: theme("colors.white");
 	margin-top: 50px;
 	font-weight: 500;
 	font-size: 26px;
 }
 
-.button_add_volume{
+.button_add_volume {
 	position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+	top: 50%;
+	transform: translateY(-50%);
 }
 
-.btn_closed{
-    padding: 2px 15px;
-    border-radius: 15px;
-    line-height: 1;
+.btn_closed {
+	padding: 2px 15px;
+	border-radius: 15px;
+	line-height: 1;
 	border: 1px solid white;
+}
+
+.popup {
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.popup-inner {
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+.small {
+	width: 120px;
+}
+
+.form-controle {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+	
+}
+
+.form-group{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.volume span{
+	display: flex;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.menu ul li {
+	margin-bottom: 20px;
 }
