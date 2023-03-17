@@ -91,12 +91,13 @@ const Volumes: React.FC = () => {
 		}, []);
 		const handleSubmit = async (values: Volume, { setSubmitting, setStatus }) => {
 			try {
-				const response = await axios.post(' http://localhost:4000/api/createvolume', values);
+				const response = await axios.post(' http://localhost:4000/api/createvolume', {name: values.name, creatorID: values.creatorID});
 				console.log(values)
 				if (response) {
 					// onAddVolume(response.data.volume);
 					setStatus({ success: true });
-					console.log('test')
+					console.log(response)
+					setVolumes([...volumes, response.data.project]);
 				} else if (response.data === "volume already exist") {
 					setStatus({ error: "Volume already exist" });
 				}
@@ -148,7 +149,6 @@ const Volumes: React.FC = () => {
 
 	const handleRemoveVolume = async (volumeId: string) => {
 		try {
-
 			const response = await axios.post<{ volume: Volume[] }>(
 				"http://localhost:4000/api/deletevolumebyid/",
 				{
@@ -197,7 +197,7 @@ const Volumes: React.FC = () => {
 	return (
 		<div className="volumes_list">
 			{volumes.length > 0 ? (
-				volumes.map((volume) => <div className="volume" key={volume.name}><Link to={`/archives/`}><span className="volume-title">{volume.name}</span><button onClick={() => handleRemoveVolume(volume._id)}>Remove</button></Link></div>)
+				volumes.map((volume) => <div className="volume" key={volume._id}><Link to={`/archives/${volume._id}`}><span className="volume-title">{volume.name}</span><button onClick={() => handleRemoveVolume(volume._id)}>Remove</button></Link></div>)
 				) : (
 				<div className="volume">No volumes found.</div>
 			)}
