@@ -7,7 +7,7 @@
   echo ">>> User $username created"
 
   # Définition du mot de passe
-echo "$username":"$userpass" | /usr/sbin/chpasswd
+echo "$username":"$userpass" | sudo /usr/sbin/chpasswd
 
 echo ">>> Password set for user $username"
 

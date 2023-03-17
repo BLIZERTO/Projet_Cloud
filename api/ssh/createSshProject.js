@@ -10,7 +10,7 @@ async function createSshProject(projectname, username) {
             }
         });
         child.stderr.on('data', (data) => {
-            console.error(`stderr: ${data}`);
+            if (child.stderr) { return data;}
         });
 
         child.on('close', (code) => {
