@@ -8,7 +8,7 @@
   echo ">>> Project $projectname created"
 
   # Attribution des droits sur le projet
-  sudo chown -R "$username /home/$username/$projectname"
+  sudo chown -R "$username" "/home/$username/$projectname"
   echo ">>> Access for $projectname given to $username"
 
   # Attribution des droits de lecture et écriture sur le projet
