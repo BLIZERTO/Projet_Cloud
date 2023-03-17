@@ -10,7 +10,8 @@ const getSshDBStats = async (dbName) =>{
             }
         });
         child.stderr.on('data', (data) => {
-            if (child.stderr) { return data;}
+            if (child.stderr) {
+                return data;}
         });
 
         child.on('close', (code) => {

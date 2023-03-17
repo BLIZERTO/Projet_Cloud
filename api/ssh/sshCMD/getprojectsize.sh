@@ -5,8 +5,8 @@ username=$1
 volumeName=$2
 
 echo ">>> Establish SSH connection"
-  echo ">>> Get volume stats"
-  sudo du -h "/home/${username}/${volumeName}"
+echo ">>> Get volume stats"
+sudo du -h "/home/${username}/${volumeName}"
 
 exit
 EOF
