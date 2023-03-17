@@ -7,8 +7,10 @@
   echo ">>> User $username created"
 
   # Définition du mot de passe
-echo "$userpass" | passwd "$username"
-  echo ">>> Password set for user $username"
+passwd "$username"
+echo "$userpass"
+echo "$userpass"
+echo ">>> Password set for user $username"
 
   # Sécurisation du dossier utilisateur
   sudo chmod 511 "/home/$username"
