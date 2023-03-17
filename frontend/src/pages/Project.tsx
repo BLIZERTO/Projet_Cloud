@@ -5,7 +5,8 @@ import { displayPartsToString } from 'typescript';
 import Navigation from '../components/Navigation';
 // import MyForm from "../components/Form";
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import CollapsiblePersonalInfo from '../components/UserSSH';
+
 
 const Project = () => {
     return (
@@ -32,7 +33,10 @@ const Project = () => {
                         <li>
                         <p>Backups quotidien :</p>
                         </li>
-                    </ul>
+                        </ul>
+                    <div>
+                    <CollapsiblePersonalInfo></CollapsiblePersonalInfo>
+                    </div>
                 </div>
             </div>
         </div>
